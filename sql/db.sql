@@ -1,0 +1,23 @@
+CREATE TABLE IF NOT EXISTS users
+(
+  user VARCHAR(10) PRIMARY KEY NOT NULL,
+  pwd VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS categories
+(
+  id_categories INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  type INT NOT NULL,
+  code TEXT,
+  color VARCHAR(8),
+  ordre INT(11) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS carousel
+(
+  id_carousel INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  titre VARCHAR(20),
+  description TEXT,
+  alt VARCHAR(20),
+  ordre INT(11) NOT NULL
+)
