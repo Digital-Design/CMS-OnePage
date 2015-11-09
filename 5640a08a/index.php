@@ -1,5 +1,8 @@
 <?php session_start();
-var_dump($_SESSION);
+
+require('../inc/config.inc.php');
+require('../inc/functions.inc.php');
+
 //si il y a un post
 if(!empty($_POST)) {
   if($_POST['action'] == 'connexion'){
@@ -28,6 +31,7 @@ if(!empty($_POST)) {
       <![endif]-->
 
 <?php if(!isset($_SESSION['log'])) : ?>
+  
     </head>
     <body>
       <h1>Hello, world!</h1>
@@ -45,56 +49,37 @@ if(!empty($_POST)) {
 
 <?php else: ?>
 
-    <link href="../css/bootstrap.no-icons.min.css" rel="stylesheet">
-    <link href="../css/font-awesome.min.css" rel="stylesheet">
-    <link href="../css/summernote.css" / rel="stylesheet">
-    <script src="../js/summernote.min.js"></script>
-
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" type="text/css" rel="stylesheet" />
+    <script src="../js/summernote.min.js" type="text/javascript"></script>
+    <link href="../css/summernote.css" type="text/css" rel="stylesheet" />
+    <link href="../css/summernote-bs3.css" type="text/css" rel="stylesheet">
     </head>
     <body>
       <h1>Hello, <?php echo $_SESSION['user']; ?>!</h1>
       <form action="index.php" method="post">
         <button type="submit" name="action" value="deconnexion" class="btn btn-default">Déconnexion</button>
       </form>
-
-      <div class="summernote container">
-        <div class="row">
-          <div class="span12">
-            <h2>POST DATA</h2>
-            <pre>
-            <?php print_r($_POST); ?>
-            </pre>
-            <pre>
-            <?php echo htmlspecialchars($_POST['content']); ?>
-            </pre>
-          </div>
-        </div>
-        <div class="row">
-          <form class="span12" id="postForm" action="/summernote.php" method="POST" enctype="multipart/form-data" onsubmit="return postForm()">
-            <fieldset>
-              <legend>Make Post</legend>
-              <p class="container">
-                <textarea class="input-block-level" id="summernote" name="content" rows="18">
-                </textarea>
-              </p>
-            </fieldset>
-            <button type="submit" class="btn btn-primary">Save changes</button>
-            <button type="button" id="cancel" class="btn">Cancel</button>
-          </form>
-        </div>
-      </div>
-
-      <script type="text/javascript">
-      $(document).ready(function() {
-        $('#summernote').summernote({
-          height: "500px"
+      <?php foreach (getCategories() as $key => $categorie): ?>
+        <form id="postForm" action="index.php" method="POST" enctype="multipart/form-data" onsubmit="return postForm()">
+          <fieldset>
+             <legend><?php echo $categorie['id_categories']; ?></legend>
+             <p class="container">
+              <textarea class="input-block-level summernote" name="content" rows="18">
+                <?php echo $categorie['code']; ?>
+              </textarea>
+            </p>
+          </fieldset>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+          <button type="button" id="cancel" class="btn">Cancel</button>
+        </form>
+        <script type="text/javascript">
+        $(document).ready(function() {
+          $('.summernote').summernote({
+            height: "500px"
+          });
         });
-      });
-      var postForm = function() {
-        var content = $('textarea[name="content"]').html($('#summernote').code());
-      }
-      </script>
-
+        </script>
+      <?php endforeach; ?>
 <?php endif; ?>
 
   </body>
