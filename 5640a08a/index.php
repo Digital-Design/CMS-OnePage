@@ -3,8 +3,11 @@
 require('../inc/config.inc.php');
 require('../inc/functions.inc.php');
 
+
+
 //si il y a un post
 if(!empty($_POST)) {
+  var_dump($_POST);
   if($_POST['action'] == 'connexion'){
     $_SESSION = $_POST;
     $_SESSION['log'] = true;
@@ -85,16 +88,22 @@ function getNav($IdLink){
           <h1>Edition du crousel</h1>
           <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
               <ol class="carousel-indicators">
+
                   <?php foreach ($carousel as $key => $image): ?>
+
                       <?php if ($key == 0): ?>
                           <li data-target="#carousel-example-generic" data-slide-to="<?php echo $key; ?>" class="active"></li>
                       <?php else: ?>
                           <li data-target="#carousel-example-generic" data-slide-to="<?php echo $key; ?>"></li>
                       <?php endif; ?>
+
                   <?php endforeach; ?>
+
               </ol>
               <div class="carousel-inner" role="listbox" style="max-height:600px">
+
               <?php foreach ($carousel as $key => $image): ?>
+
                   <?php if ($key == 0): ?>
                     <div class="item active">
                   <?php else: ?>
@@ -106,7 +115,9 @@ function getNav($IdLink){
                       <p><?php echo $image['description']; ?></p>
                     </div>
                   </div>
+
               <?php endforeach; ?>
+
               </div>
               <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
                   <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -130,27 +141,37 @@ function getNav($IdLink){
               </tr>
             </thead>
             <tbody>
-        <?php foreach ($carousel as $key => $image): ?>
-            <tr>
-              <td class="handle">
-                <button type="button" class="btn btn-default" aria-label="Left Align">
-                  <span class="glyphicon glyphicon-move" aria-hidden="true"></span>
-                </button>
-                <input type="text" disabled value="<?php echo $image['ordre']; ?>" class="weight" maxlength="5"/></td>
-              <td>
-                <a class="thumbnail">
-                  <img src="../images/carousel/<?php echo $image['id_carousel']; ?>.jpeg" alt="<?php echo $image['alt']; ?>">
-                </a>
-              </td>
-              <td><?php echo $image['titre']; ?></td>
-              <td><?php echo $image['description']; ?></td>
-              <td><?php echo $image['alt']; ?></td>
-            </tr>
-        <?php endforeach; ?>
-          </tbody>
-        </table>
-        <button type="submit" name="action" value="carousel" class="btn btn-primary">Enregistrer</button>
-        <button type="button" class="btn">Annuler</button>
+
+          <?php foreach ($carousel as $key => $image): ?>
+
+              <tr>
+                <td class="handle">
+                  <button type="button" class="btn btn-default" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-move" aria-hidden="true"></span>
+                  </button>
+                  <input name="order_<?php echo $image['id_carousel']; ?>" type="text" value="<?php echo $image['ordre']; ?>" class="weight" maxlength="5"/></td>
+                <td>
+                  <a class="thumbnail">
+                    <img src="../images/carousel/<?php echo $image['id_carousel']; ?>.jpeg" alt="<?php echo $image['alt']; ?>">
+                  </a>
+                </td>
+                <td>
+                  <input name="titre_<?php echo $image['id_carousel']; ?>" type="text" value="<?php echo $image['titre']; ?>"/>
+                </td>
+                <td>
+                  <input name="description_<?php echo $image['id_carousel']; ?>" type="text" value="<?php echo $image['description']; ?>"/>
+                </td>
+                <td>
+                  <input name="alt_<?php echo $image['id_carousel']; ?>" type="text" value="<?php echo $image['alt']; ?>"/>
+                </td>
+              </tr>
+
+          <?php endforeach; ?>
+
+            </tbody>
+          </table>
+          <button type="submit" name="action" value="carousel" class="btn btn-primary">Enregistrer</button>
+          <button type="button" class="btn">Annuler</button>
         </form>
       </div>
       <script>
@@ -182,44 +203,48 @@ function getNav($IdLink){
 
           <h1>Edition des catégories</h1>
           <div class="list-group">
+
           <?php foreach (getCategories() as $key => $categorie): ?>
+
             <li class="list-group-item">
-          <h2>
-            Editer la catégorie <?php echo $categorie['id_categories']; ?>
-            <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#categorie<?php echo $categorie['id_categories']; ?>" aria-expanded="false" aria-controls="categorie<?php echo $categorie['id_categories']; ?>">
-              <span id="button-categorie-<?php echo $categorie['id_categories']; ?>" class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-            </button>
-          </h2>
-          <div class="collapse" id="categorie<?php echo $categorie['id_categories']; ?>">
-            <form id="postForm" action="index.php" method="POST" enctype="multipart/form-data">
-              <!-- Color picker -->
-              <div class="input-group colorpicker">
-                <input type="text" name="color" value="<?php echo $categorie['color']; ?>" class="form-control" />
-                <span class="input-group-addon"><i></i></span>
+              <h2>
+                Editer la catégorie <?php echo $categorie['id_categories']; ?>
+                <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#categorie<?php echo $categorie['id_categories']; ?>" aria-expanded="false" aria-controls="categorie<?php echo $categorie['id_categories']; ?>">
+                  <span id="button-categorie-<?php echo $categorie['id_categories']; ?>" class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                </button>
+              </h2>
+              <div class="collapse" id="categorie<?php echo $categorie['id_categories']; ?>">
+                <form id="postForm" action="index.php" method="POST" enctype="multipart/form-data">
+                  <!-- Color picker -->
+                  <div class="input-group colorpicker">
+                    <input type="text" name="color" value="<?php echo $categorie['color']; ?>" class="form-control" />
+                    <span class="input-group-addon"><i></i></span>
+                  </div>
+                  <!-- Ordre -->
+                  <input type="number" name="ordre" value="<?php echo $categorie['ordre']; ?>" class="form-control" />
+                  <!-- summernote -->
+                  <textarea class="input-block-level summernote" name="code" rows="18">
+                    <?php echo $categorie['code']; ?>
+                  </textarea>
+                  <button type="submit" name="action" value="categorie" class="btn btn-primary">Enregistrer</button>
+                  <button type="button" class="btn">Annuler</button>
+                </form>
               </div>
-              <!-- Ordre -->
-              <input type="number" name="ordre" value="<?php echo $categorie['ordre']; ?>" class="form-control" />
-              <!-- summernote -->
-              <textarea class="input-block-level summernote" name="code" rows="18">
-                <?php echo $categorie['code']; ?>
-              </textarea>
-              <button type="submit" name="action" value="categorie" class="btn btn-primary">Enregistrer</button>
-              <button type="button" class="btn">Annuler</button>
-            </form>
-          </div>
-          <script type="text/javascript">
-          $('#button-categorie-<?php echo $categorie['id_categories']; ?>').on('click', function(){
-            if($('#button-categorie-<?php echo $categorie['id_categories']; ?>').hasClass('glyphicon-plus')){
-              $('#button-categorie-<?php echo $categorie['id_categories']; ?>').removeClass('glyphicon-plus');
-              $('#button-categorie-<?php echo $categorie['id_categories']; ?>').addClass('glyphicon-minus');
-            }else{
-              $('#button-categorie-<?php echo $categorie['id_categories']; ?>').removeClass('glyphicon-minus');
-              $('#button-categorie-<?php echo $categorie['id_categories']; ?>').addClass('glyphicon-plus');
-            }
-          });
-        </script>
-          </li>
+              <script type="text/javascript">
+                $('#button-categorie-<?php echo $categorie['id_categories']; ?>').on('click', function(){
+                  if($('#button-categorie-<?php echo $categorie['id_categories']; ?>').hasClass('glyphicon-plus')){
+                    $('#button-categorie-<?php echo $categorie['id_categories']; ?>').removeClass('glyphicon-plus');
+                    $('#button-categorie-<?php echo $categorie['id_categories']; ?>').addClass('glyphicon-minus');
+                  }else{
+                    $('#button-categorie-<?php echo $categorie['id_categories']; ?>').removeClass('glyphicon-minus');
+                    $('#button-categorie-<?php echo $categorie['id_categories']; ?>').addClass('glyphicon-plus');
+                  }
+                });
+              </script>
+            </li>
+
           <?php endforeach; ?>
+
           </div>
         </div>
       </div>
@@ -237,5 +262,6 @@ function getNav($IdLink){
       </footer>
 
 <?php endif; ?>
+
   </body>
 </html>
