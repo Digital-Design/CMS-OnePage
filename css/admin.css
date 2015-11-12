@@ -1,9 +1,22 @@
 .aside{
   background-color: #ecf0f1;
 }
+body.dragging, body.dragging * {
+  cursor: move !important;
+}
 
+.dragged {
+  position: absolute;
+  opacity: 0.5;
+  z-index: 2000;
+}
 
-
+tr.#sortable td.placeholder {
+  position: relative;
+}
+tr.#sortable td.placeholder:before {
+  position: absolute;
+}
 
 
 /*!

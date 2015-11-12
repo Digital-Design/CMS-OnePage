@@ -74,6 +74,7 @@ function getNav($IdLink){
 
 <?php elseif(isset($_GET['page']) && $_GET['page'] == 'carousel'): $carousel = getCarousel()?>
 
+    <script src='../js/jquery-sortable.js'></script>
     </head>
     <body>
       <div class="flex-container">
@@ -117,14 +118,41 @@ function getNav($IdLink){
               </a>
           </div>
           <br/>
+          <table id="sortable" class="table table-hover table-striped">
+            <thead>
+              <tr>
+                <th>Ordre</th>
+                <th>Image</th>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Alt</th>
+              </tr>
+            </thead>
+            <tbody>
         <?php foreach ($carousel as $key => $image): ?>
-        <div class="col-xs-6 col-md-3">
-          <a class="thumbnail">
-            <img src="../images/carousel/<?php echo $image['id_carousel']; ?>.jpeg" alt="<?php echo $image['alt']; ?>">
-          </a>
-        </div>
+            <tr>
+              <td><?php echo $image['ordre']; ?></td>
+              <td>
+                <a class="thumbnail">
+                  <img src="../images/carousel/<?php echo $image['id_carousel']; ?>.jpeg" alt="<?php echo $image['alt']; ?>">
+                </a>
+              </td>
+              <td><?php echo $image['titre']; ?></td>
+              <td><?php echo $image['description']; ?></td>
+              <td><?php echo $image['alt']; ?></td>
+            </tr>
         <?php endforeach; ?>
+          </tbody>
+        </table>
       </div>
+      <script>
+        $('#sortable').sortable({
+          containerSelector: 'table',
+          itemPath: '> tbody',
+          itemSelector: 'tr',
+          placeholder: '<tr class="placeholder"/>',
+        });
+      </script>
 
 <?php else: ?>
 
