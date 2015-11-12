@@ -118,7 +118,8 @@ function getNav($IdLink){
               </a>
           </div>
           <br/>
-          <table id="sortable" class="table table-hover table-striped">
+          <form id="postForm" method="POST" enctype="multipart/form-data">
+          <table id="Sortable" class="table table-hover table-striped">
             <thead>
               <tr>
                 <th>Ordre</th>
@@ -131,7 +132,11 @@ function getNav($IdLink){
             <tbody>
         <?php foreach ($carousel as $key => $image): ?>
             <tr>
-              <td><?php echo $image['ordre']; ?></td>
+              <td class="handle">
+                <button type="button" class="btn btn-default" aria-label="Left Align">
+                  <span class="glyphicon glyphicon-move" aria-hidden="true"></span>
+                </button>
+                <input type="text" disabled value="<?php echo $image['ordre']; ?>" class="weight" maxlength="5"/></td>
               <td>
                 <a class="thumbnail">
                   <img src="../images/carousel/<?php echo $image['id_carousel']; ?>.jpeg" alt="<?php echo $image['alt']; ?>">
@@ -144,14 +149,19 @@ function getNav($IdLink){
         <?php endforeach; ?>
           </tbody>
         </table>
+        <button type="submit" name="action" value="carousel" class="btn btn-primary">Enregistrer</button>
+        <button type="button" class="btn">Annuler</button>
+        </form>
       </div>
       <script>
-        $('#sortable').sortable({
-          containerSelector: 'table',
-          itemPath: '> tbody',
-          itemSelector: 'tr',
-          placeholder: '<tr class="placeholder"/>',
-        });
+      $('#Sortable tbody').sortable({
+          handle: ".handle",
+          stop: function(event, ui) {
+              $('#Sortable tbody>tr').each(function(index){
+                  $(this).find('.weight').val(index+1);
+              });
+          }
+      });
       </script>
 
 <?php else: ?>
@@ -181,7 +191,7 @@ function getNav($IdLink){
             </button>
           </h2>
           <div class="collapse" id="categorie<?php echo $categorie['id_categories']; ?>">
-            <form id="postForm" action="index.php" method="POST" enctype="multipart/form-data" onsubmit="return postForm()">
+            <form id="postForm" action="index.php" method="POST" enctype="multipart/form-data">
               <!-- Color picker -->
               <div class="input-group colorpicker">
                 <input type="text" name="color" value="<?php echo $categorie['color']; ?>" class="form-control" />

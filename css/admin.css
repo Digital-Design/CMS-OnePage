@@ -18,6 +18,9 @@ tr.#sortable td.placeholder:before {
   position: absolute;
 }
 
+.handle {
+    cursor: move;
+}
 
 /*!
 * www.KNACSS.com V4.3.2 (8 juillet 2015) @author: Raphael Goetter, Alsacreations
