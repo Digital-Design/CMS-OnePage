@@ -390,11 +390,9 @@ function getNavAdmin($IdLink){
       <script type="text/javascript">
         $('.boutton-categorie').on('click', function(){
           if($(this).hasClass('glyphicon-plus')){
-            $(this).removeClass('glyphicon-plus');
-            $(this).addClass('glyphicon-minus');
+            $(this).toggleClass('glyphicon-plus glyphicon-minus');
           }else{
-            $(this).removeClass('glyphicon-minus');
-            $(this).addClass('glyphicon-plus');
+            $(this).toggleClass('glyphicon-minus glyphicon-plus');
           }
         });
         $(document).ready(function() {
