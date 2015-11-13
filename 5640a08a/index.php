@@ -4,18 +4,45 @@ require('../inc/config.inc.php');
 require('../inc/functions.inc.php');
 
 
-
 //si il y a un post
 if(!empty($_POST)) {
-  var_dump($_POST);
-  if($_POST['action'] == 'connexion'){
+
+  $success = FALSE;
+
+  if($_POST['type'] == 'connexion'){
     $_SESSION = $_POST;
     $_SESSION['log'] = true;
   }
-  else if($_POST['action'] == 'deconnexion'){
+  else if($_POST['type'] == 'deconnexion'){
     unset($_SESSION);
   }
-  else if($_POST['action'] == 'categorie'){
+  else if($_POST['type'] == 'categorie'){
+
+      $bdd = connectDB();
+
+      if($_POST['action'] == 'add') $sql = 'INSERT INTO';
+      else if($_POST['action'] == 'edit') $sql = 'UPDATE';
+      $sql .= ' categories SET ';
+
+      $sql .= 'color = :color,
+              ordre = :ordre,
+              code = :code';
+
+      if($_POST['action'] == 'edit') $sql .= ' WHERE id_categories = :id_categories';
+
+      $stmt = $bdd->prepare($sql);
+
+      $stmt->bindParam(':color', $_POST['color'], PDO::PARAM_STR);
+      $stmt->bindParam(':ordre', $_POST['ordre'], PDO::PARAM_INT);
+      $stmt->bindParam(':code', $_POST['code'], PDO::PARAM_STR);
+      $stmt->bindParam(':id_categories', $_POST['id_categories'], PDO::PARAM_INT);
+
+      if($stmt->execute() or die(var_dump($stmt->ErrorInfo()))) {
+        $success = TRUE;
+      }
+  }
+  else if($_POST['type'] == 'carousel'){
+    var_dump($_POST);
 
   }
 }
@@ -26,7 +53,7 @@ function getNav($IdLink){
   <nav id="navigation" role="navigation">
     <h1>Hello, '.$_SESSION['user'].'!</h1>
     <form action="index.php" method="post">
-      <button type="submit" name="action" value="deconnexion" class="btn btn-default">Déconnexion</button>
+      <button type="submit" name="type" value="deconnexion" class="btn btn-default">Déconnexion</button>
     </form>
     <br/>
     <div class="list-group">
@@ -48,7 +75,7 @@ function getNav($IdLink){
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Test</title>
+      <title>Administration</title>
       <link href="../css/bootstrap.min.css" rel="stylesheet">
       <link href="../css/admin.css" rel="stylesheet">
       <script src="../js/jquery.min.js"></script>
@@ -77,7 +104,7 @@ function getNav($IdLink){
 
 <?php elseif(isset($_GET['page']) && $_GET['page'] == 'carousel'): $carousel = getCarousel()?>
 
-    <script src='../js/jquery-sortable.js'></script>
+      <script src='../js/jquery-sortable.js'></script>
     </head>
     <body>
       <div class="flex-container">
@@ -170,7 +197,7 @@ function getNav($IdLink){
 
             </tbody>
           </table>
-          <button type="submit" name="action" value="carousel" class="btn btn-primary">Enregistrer</button>
+          <button type="submit" name="type" value="carousel" class="btn btn-primary">Enregistrer</button>
           <button type="button" class="btn">Annuler</button>
         </form>
       </div>
@@ -215,6 +242,9 @@ function getNav($IdLink){
               </h2>
               <div class="collapse" id="categorie<?php echo $categorie['id_categories']; ?>">
                 <form id="postForm" action="index.php" method="POST" enctype="multipart/form-data">
+                  <!-- ID -->
+                    <input type="text" name="action" value="edit" class="form-control" />
+                    <input type="text" name="id_categories" value="<?php echo $categorie['id_categories']; ?>" class="form-control" />
                   <!-- Color picker -->
                   <div class="input-group colorpicker">
                     <input type="text" name="color" value="<?php echo $categorie['color']; ?>" class="form-control" />
@@ -226,7 +256,7 @@ function getNav($IdLink){
                   <textarea class="input-block-level summernote" name="code" rows="18">
                     <?php echo $categorie['code']; ?>
                   </textarea>
-                  <button type="submit" name="action" value="categorie" class="btn btn-primary">Enregistrer</button>
+                  <button type="submit" name="type" value="categorie" class="btn btn-primary">Enregistrer</button>
                   <button type="button" class="btn">Annuler</button>
                 </form>
               </div>
@@ -248,18 +278,16 @@ function getNav($IdLink){
           </div>
         </div>
       </div>
-      <footer>
-        <script type="text/javascript">
-          $(document).ready(function() {
-            $('.summernote').summernote({
-              height: "500px"
-            });
+      <script type="text/javascript">
+        $(document).ready(function() {
+          $('.summernote').summernote({
+            height: "500px"
           });
-          $(function(){
-            $('.colorpicker').colorpicker();
-          });
-        </script>
-      </footer>
+        });
+        $(function(){
+          $('.colorpicker').colorpicker();
+        });
+      </script>
 
 <?php endif; ?>
 
