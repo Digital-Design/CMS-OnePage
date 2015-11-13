@@ -356,7 +356,7 @@ function getNavAdmin($IdLink){
               <h2>
                 Editer la catégorie <?php echo $categorie['id_categories']; ?>
                 <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#categorie<?php echo $categorie['id_categories']; ?>" aria-expanded="false" aria-controls="categorie<?php echo $categorie['id_categories']; ?>">
-                  <span id="button-categorie-<?php echo $categorie['id_categories']; ?>" class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-plus boutton-categorie" aria-hidden="true"></span>
                 </button>
               </h2>
               <div class="collapse" id="categorie<?php echo $categorie['id_categories']; ?>">
@@ -379,17 +379,7 @@ function getNavAdmin($IdLink){
                   <button type="button" class="btn">Annuler</button>
                 </form>
               </div>
-              <script type="text/javascript">
-                $('#button-categorie-<?php echo $categorie['id_categories']; ?>').on('click', function(){
-                  if($('#button-categorie-<?php echo $categorie['id_categories']; ?>').hasClass('glyphicon-plus')){
-                    $('#button-categorie-<?php echo $categorie['id_categories']; ?>').removeClass('glyphicon-plus');
-                    $('#button-categorie-<?php echo $categorie['id_categories']; ?>').addClass('glyphicon-minus');
-                  }else{
-                    $('#button-categorie-<?php echo $categorie['id_categories']; ?>').removeClass('glyphicon-minus');
-                    $('#button-categorie-<?php echo $categorie['id_categories']; ?>').addClass('glyphicon-plus');
-                  }
-                });
-              </script>
+
             </li>
 
           <?php endforeach; ?>
@@ -398,6 +388,15 @@ function getNavAdmin($IdLink){
         </div>
       </div>
       <script type="text/javascript">
+        $('.boutton-categorie').on('click', function(){
+          if($(this).hasClass('glyphicon-plus')){
+            $(this).removeClass('glyphicon-plus');
+            $(this).addClass('glyphicon-minus');
+          }else{
+            $(this).removeClass('glyphicon-minus');
+            $(this).addClass('glyphicon-plus');
+          }
+        });
         $(document).ready(function() {
           $('.summernote').summernote({
             height: "500px"
