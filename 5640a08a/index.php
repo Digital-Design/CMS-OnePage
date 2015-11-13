@@ -18,37 +18,89 @@ if(!empty($_POST)) {
   }
   else if($_POST['type'] == 'categorie'){
 
-      $bdd = connectDB();
+    $bdd = connectDB();
 
-      if($_POST['action'] == 'add') $sql = 'INSERT INTO';
-      else if($_POST['action'] == 'edit') $sql = 'UPDATE';
-      $sql .= ' categories SET ';
+    if($_POST['action'] == 'add') $sql = 'INSERT INTO';
+    else if($_POST['action'] == 'edit') $sql = 'UPDATE';
+    $sql .= ' categories SET ';
 
-      $sql .= 'color = :color,
-              ordre = :ordre,
-              code = :code';
+    $sql .= 'color = :color,
+            ordre = :ordre,
+            code = :code';
 
-      if($_POST['action'] == 'edit') $sql .= ' WHERE id_categories = :id_categories';
+    if($_POST['action'] == 'edit') $sql .= ' WHERE id_categories = :id_categories';
+
+    $stmt = $bdd->prepare($sql);
+
+    $stmt->bindParam(':color', $_POST['color'], PDO::PARAM_STR);
+    $stmt->bindParam(':ordre', $_POST['ordre'], PDO::PARAM_INT);
+    $stmt->bindParam(':code', $_POST['code'], PDO::PARAM_STR);
+    $stmt->bindParam(':id_categories', $_POST['id_categories'], PDO::PARAM_INT);
+
+    if($stmt->execute() or die(var_dump($stmt->ErrorInfo()))) {
+      $success = TRUE;
+    }
+  }
+  else if($_POST['type'] == 'carousel'){
+    $bdd = connectDB();
+
+    if($_POST['action'] == 'add') $sql = 'INSERT INTO';
+    else if($_POST['action'] == 'edit') $sql = 'UPDATE';
+    $sql .= ' carousel SET ';
+
+    $sql .= 'titre = :titre,
+            description = :description,
+            ordre = :ordre,
+            alt = :alt';
+
+    if($_POST['action'] == 'edit') $sql .= ' WHERE id_carousel = :id_carousel';
+
+    for ($i=1; $i < count(getCarousel())+1; $i++) {
 
       $stmt = $bdd->prepare($sql);
-
-      $stmt->bindParam(':color', $_POST['color'], PDO::PARAM_STR);
-      $stmt->bindParam(':ordre', $_POST['ordre'], PDO::PARAM_INT);
-      $stmt->bindParam(':code', $_POST['code'], PDO::PARAM_STR);
-      $stmt->bindParam(':id_categories', $_POST['id_categories'], PDO::PARAM_INT);
+      $stmt->bindParam(':titre', $_POST['titre_'.$i], PDO::PARAM_STR);
+      $stmt->bindParam(':description', $_POST['description_'.$i], PDO::PARAM_STR);
+      $stmt->bindParam(':ordre', $_POST['ordre_'.$i], PDO::PARAM_INT);
+      $stmt->bindParam(':alt', $_POST['alt_'.$i], PDO::PARAM_STR);
+      $stmt->bindParam(':id_carousel', $_POST['id_carousel_'.$i], PDO::PARAM_INT);
 
       if($stmt->execute() or die(var_dump($stmt->ErrorInfo()))) {
         $success = TRUE;
       }
+    }
   }
-  else if($_POST['type'] == 'carousel'){
-    var_dump($_POST);
+  else if($_POST['type'] == 'nav'){
 
+    $bdd = connectDB();
+
+    if($_POST['action'] == 'add') $sql = 'INSERT INTO';
+    else if($_POST['action'] == 'edit') $sql = 'UPDATE';
+    $sql .= ' nav SET ';
+
+    $sql .= 'titre = :titre,
+            lien = :lien,
+            ordre = :ordre';
+
+    if($_POST['action'] == 'edit') $sql .= ' WHERE id_nav = :id_nav';
+
+    for ($i=1; $i < count(getNav())+1; $i++) {
+
+      $stmt = $bdd->prepare($sql);
+
+      $stmt->bindParam(':titre', $_POST['titre_'.$i], PDO::PARAM_STR);
+      $stmt->bindParam(':lien', $_POST['lien_'.$i], PDO::PARAM_STR);
+      $stmt->bindParam(':ordre', $_POST['ordre_'.$i], PDO::PARAM_INT);
+      $stmt->bindParam(':id_nav', $_POST['id_nav_'.$i], PDO::PARAM_INT);
+
+      if($stmt->execute() or die(var_dump($stmt->ErrorInfo()))) {
+        $success = TRUE;
+      }
+    }
   }
 }
 
 //fonction pour avoir la barre de nav admin
-function getNav($IdLink){
+function getNavAdmin($IdLink){
   $toolbar = '
   <nav id="navigation" role="navigation">
     <h1>Hello, '.$_SESSION['user'].'!</h1>
@@ -63,6 +115,9 @@ function getNav($IdLink){
       <a href="index.php?page=carousel" class="list-group-item ';
       if($IdLink==2)$toolbar .= 'active ';
       $toolbar .= '">Editer le carousel</a>
+      <a href="index.php?page=nav" class="list-group-item ';
+      if($IdLink==3)$toolbar .= 'active ';
+      $toolbar .= '">Editer la barre de navigation</a>
     </div>
   </nav>';
   return $toolbar;
@@ -99,7 +154,7 @@ function getNav($IdLink){
           <label for="pwd">Mot de passe</label>
           <input type="password" class="form-control" name="pwd">
         </div>
-        <button type="submit" name="action" value="connexion" class="btn btn-default">Se connecter</button>
+        <button type="submit" name="type" value="connexion" class="btn btn-default">Se connecter</button>
       </form>
 
 <?php elseif(isset($_GET['page']) && $_GET['page'] == 'carousel'): $carousel = getCarousel()?>
@@ -109,7 +164,7 @@ function getNav($IdLink){
     <body>
       <div class="flex-container">
         <aside class="w20 mrs pam aside">
-          <?php echo getNav(2); ?>
+          <?php echo getNavAdmin(2); ?>
         </aside>
         <div id="main" role="main" class="flex-item-fluid pam">
           <h1>Edition du crousel</h1>
@@ -127,7 +182,7 @@ function getNav($IdLink){
                   <?php endforeach; ?>
 
               </ol>
-              <div class="carousel-inner" role="listbox" style="max-height:600px">
+              <div class="carousel-inner" role="listbox" >
 
               <?php foreach ($carousel as $key => $image): ?>
 
@@ -157,6 +212,7 @@ function getNav($IdLink){
           </div>
           <br/>
           <form id="postForm" method="POST" enctype="multipart/form-data">
+          <input name="action" type="text" value="edit"/>
           <table id="Sortable" class="table table-hover table-striped">
             <thead>
               <tr>
@@ -176,7 +232,8 @@ function getNav($IdLink){
                   <button type="button" class="btn btn-default" aria-label="Left Align">
                     <span class="glyphicon glyphicon-move" aria-hidden="true"></span>
                   </button>
-                  <input name="order_<?php echo $image['id_carousel']; ?>" type="text" value="<?php echo $image['ordre']; ?>" class="weight" maxlength="5"/></td>
+                  <input name="id_carousel_<?php echo $image['id_carousel']; ?>" type="text" value="<?php echo $image['id_carousel']; ?>"/>
+                  <input name="ordre_<?php echo $image['id_carousel']; ?>" type="text" value="<?php echo $image['ordre']; ?>" class="weight" maxlength="5"/></td>
                 <td>
                   <a class="thumbnail">
                     <img src="../images/carousel/<?php echo $image['id_carousel']; ?>.jpeg" alt="<?php echo $image['alt']; ?>">
@@ -212,6 +269,68 @@ function getNav($IdLink){
       });
       </script>
 
+<?php elseif(isset($_GET['page']) && $_GET['page'] == 'nav'): $nav = getNav() ?>
+
+      <script src='../js/jquery-sortable.js'></script>
+    </head>
+    <body>
+      <div class="flex-container">
+        <aside class="w20 mrs pam aside">
+          <?php echo getNavAdmin(3); ?>
+        </aside>
+        <div id="main" role="main" class="flex-item-fluid pam">
+          <h1>Edition de la barre de navigation</h1>
+
+          <form id="postForm" method="POST" enctype="multipart/form-data">
+          <input name="action" type="text" value="edit"/>
+          <table id="Sortable" class="table table-hover table-striped">
+            <thead>
+              <tr>
+                <th>Ordre</th>
+                <th>Lien</th>
+                <th>Titre</th>
+              </tr>
+            </thead>
+            <tbody>
+
+          <?php foreach ($nav as $key => $lien): ?>
+
+              <tr>
+                <td class="handle">
+                  <button type="button" class="btn btn-default" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-move" aria-hidden="true"></span>
+                  </button>
+                  <input name="id_nav_<?php echo $lien['id_nav']; ?>" type="text" value="<?php echo $lien['id_nav']; ?>"/>
+                  <input name="ordre_<?php echo $lien['id_nav']; ?>" type="text" value="<?php echo $lien['ordre']; ?>" class="weight" maxlength="5"/>
+                </td>
+                <td>
+                  <input name="lien_<?php echo $lien['id_nav']; ?>" type="text" value="<?php echo $lien['lien']; ?>"/>
+                </td>
+                <td>
+                  <input name="titre_<?php echo $lien['id_nav']; ?>" type="text" value="<?php echo $lien['titre']; ?>"/>
+                </td>
+              </tr>
+
+          <?php endforeach; ?>
+
+            </tbody>
+          </table>
+          <button type="submit" name="type" value="nav" class="btn btn-primary">Enregistrer</button>
+          <button type="button" class="btn">Annuler</button>
+        </form>
+      </div>
+      <script>
+      $('#Sortable tbody').sortable({
+          handle: ".handle",
+          stop: function(event, ui) {
+              $('#Sortable tbody>tr').each(function(index){
+                  $(this).find('.weight').val(index+1);
+              });
+          }
+      });
+      </script>
+
+
 <?php else: ?>
 
       <script src="../js/summernote.min.js" type="text/javascript"></script>
@@ -224,7 +343,7 @@ function getNav($IdLink){
     <body>
       <div class="flex-container">
         <aside class="w20 mrs pam aside">
-          <?php echo getNav(1); ?>
+          <?php echo getNavAdmin(1); ?>
         </aside>
         <div id="main" role="main" class="flex-item-fluid pam">
 

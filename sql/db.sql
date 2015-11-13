@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS users
 
 CREATE TABLE IF NOT EXISTS categories
 (
-  id_categories INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  id_categorie INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   type INT NOT NULL,
   code TEXT,
   color VARCHAR(8),
@@ -19,5 +19,13 @@ CREATE TABLE IF NOT EXISTS carousel
   titre VARCHAR(20),
   description TEXT,
   alt VARCHAR(20),
+  ordre INT(11) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS nav
+(
+  id_nav INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  titre VARCHAR(20),
+  lien TEXT,
   ordre INT(11) NOT NULL
 )

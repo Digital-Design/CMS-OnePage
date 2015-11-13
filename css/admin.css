@@ -1,3 +1,7 @@
+.carousel-inner .item{
+  max-height:600px;
+}
+
 .aside{
   background-color: #ecf0f1;
 }
