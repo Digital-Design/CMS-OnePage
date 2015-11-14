@@ -15,14 +15,14 @@ if(!empty($_POST)) {
 	ordre = :ordre,
 	code = :code';
 
-	if($_POST['action'] == 'edit') $sql .= ' WHERE id_categories = :id_categories';
+	if($_POST['action'] == 'edit') $sql .= ' WHERE id_categorie = :id_categorie';
 
 	$stmt = $bdd->prepare($sql);
 
 	$stmt->bindParam(':color', $_POST['color'], PDO::PARAM_STR);
 	$stmt->bindParam(':ordre', $_POST['ordre'], PDO::PARAM_INT);
 	$stmt->bindParam(':code', $_POST['code'], PDO::PARAM_STR);
-	$stmt->bindParam(':id_categories', $_POST['id_categories'], PDO::PARAM_INT);
+	$stmt->bindParam(':id_categorie', $_POST['id_categorie'], PDO::PARAM_INT);
 
 	if($stmt->execute() or die(var_dump($stmt->ErrorInfo()))) {
 		$success = TRUE;

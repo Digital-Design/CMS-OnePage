@@ -67,7 +67,6 @@
         </div>
         <br/>
         <form action="index.php?page=carousel" method="POST" enctype="multipart/form-data">
-          <input name="action" type="text" value="edit"/>
           <table id="Sortable" class="table table-hover table-striped">
             <thead>
               <tr>
@@ -87,6 +86,7 @@
                     <button type="button" class="btn btn-default" aria-label="Left Align">
                       <span class="glyphicon glyphicon-move" aria-hidden="true"></span>
                     </button>
+                    <input name="action_<?php echo $key; ?>" type="text" value="edit"/>
                     <input name="id_carousel_<?php echo $key; ?>" type="text" value="<?php echo $image['id_carousel']; ?>"/>
                     <input name="ordre_<?php echo $key; ?>" type="text" value="<?php echo $image['ordre']; ?>" class="weight" maxlength="5"/></td>
                     <td>
@@ -109,7 +109,7 @@
 
               </tbody>
             </table>
-            <button type="submit" name="type" value="carousel" class="btn btn-primary">Enregistrer</button>
+            <button type="submit" name="nb_carousel" value="<?php echo $key; ?>" class="btn btn-primary">Enregistrer</button>
             <button type="button" class="btn">Annuler</button>
           </form>
         </div>

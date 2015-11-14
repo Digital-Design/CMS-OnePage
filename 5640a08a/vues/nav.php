@@ -24,7 +24,6 @@
       <h1>Edition de la barre de navigation</h1>
 
       <form action="index.php?page=nav" method="POST" enctype="multipart/form-data">
-        <input name="action" type="text" value="edit"/>
         <table id="Sortable" class="table table-hover table-striped">
           <thead>
             <tr>
@@ -42,8 +41,9 @@
                   <button type="button" class="btn btn-default" aria-label="Left Align">
                     <span class="glyphicon glyphicon-move" aria-hidden="true"></span>
                   </button>
+                  <input name="action" type="text" value="edit"/>
                   <input name="id_nav_<?php echo $key; ?>" type="text" value="<?php echo $lien['id_nav']; ?>"/>
-                  <input name="ordre_<?php echo $key; ?>" type="text" value="<?php echo $lien['ordre']; ?>" class="weight" maxlength="5"/>
+                  <input name="ordre_<?php echo $key; ?>" type="text" value="<?php echo $lien['ordre']; ?>" class="weight"/>
                 </td>
                 <td>
                   <input name="lien_<?php echo $key; ?>" type="text" value="<?php echo $lien['lien']; ?>"/>
@@ -57,7 +57,7 @@
 
           </tbody>
         </table>
-        <button type="submit" name="type" value="nav" class="btn btn-primary">Enregistrer</button>
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
         <button type="button" class="btn">Annuler</button>
       </form>
     </div>

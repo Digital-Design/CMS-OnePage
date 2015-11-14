@@ -25,8 +25,7 @@
       <label for="pwd">Mot de passe</label>
       <input type="password" class="form-control" name="pwd">
     </div>
-    <button type="submit" name="type" value="connexion" class="btn btn-default">Se connecter</button>
+    <button type="submit" class="btn btn-default">Se connecter</button>
   </form>
-
 </body>
 </html>

@@ -21,6 +21,7 @@
     </aside>
     <div id="main" role="main" class="flex-item-fluid pam">
       <h1>Autres paramètres</h1>
+      
     </div>
   </div>
 </body>

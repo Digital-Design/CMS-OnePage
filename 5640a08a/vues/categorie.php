@@ -34,16 +34,16 @@
 
           <li class="list-group-item">
             <h2>
-              Editer la catégorie <?php echo $categorie['id_categories']; ?>
-              <button type="button" class="btn btn-default boutton-categorie" data-toggle="collapse" data-target="#categorie<?php echo $categorie['id_categories']; ?>" aria-expanded="false" aria-controls="categorie<?php echo $categorie['id_categories']; ?>">
+              Editer la catégorie <?php echo $categorie['id_categorie']; ?>
+              <button type="button" class="btn btn-default btn-categorie" data-toggle="collapse" data-target="#id_categorie_<?php echo $categorie['id_categories']; ?>" aria-expanded="false" aria-controls="id_categorie_<?php echo $categorie['id_categories']; ?>">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
               </button>
             </h2>
-            <div class="collapse" id="categorie<?php echo $categorie['id_categories']; ?>">
-            <form id="postForm" action="index.php?page=categorie" method="POST" enctype="multipart/form-data">
+            <div class="collapse" id="id_categorie_<?php echo $categorie['id_categories']; ?>">
+              <form id="postForm" action="index.php?page=categorie" method="POST" enctype="multipart/form-data">
                 <!-- ID -->
                 <input type="text" name="action" value="edit" class="form-control" />
-                <input type="text" name="id_categories" value="<?php echo $categorie['id_categories']; ?>" class="form-control" />
+                <input type="text" name="id_categorie" value="<?php echo $categorie['id_categorie']; ?>" class="form-control" />
                 <!-- Color picker -->
                 <div class="input-group colorpicker">
                   <input type="text" name="color" value="<?php echo $categorie['color']; ?>" class="form-control" />
@@ -55,7 +55,7 @@
                 <textarea class="input-block-level summernote" name="code" rows="18">
                   <?php echo $categorie['code']; ?>
                 </textarea>
-                <button type="submit" name="type" value="categorie" class="btn btn-primary">Enregistrer</button>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
                 <button type="button" class="btn">Annuler</button>
               </form>
             </div>
@@ -68,7 +68,7 @@
     </div>
   </div>
   <script type="text/javascript">
-    $('.boutton-categorie').on('click', function(){
+    $('.btn-categorie').on('click', function(){
       if($("span" , this ).hasClass('glyphicon-plus')){
         $("span" , this ).toggleClass('glyphicon-plus glyphicon-minus');
       }else{

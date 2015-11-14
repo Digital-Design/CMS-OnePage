@@ -89,7 +89,7 @@ foreach (glob("5640a08a/modeles/*.php") as $filename){
         <!-- Categories -->
         <?php if ($categories = getCategories()): ?>
             <?php foreach ($categories as $key => $categorie): ?>
-                <div id="<?php echo $categorie['id_categories']; ?>" class="categorie" style="background-color:<?php echo $categorie['color']; ?>">
+                <div id="<?php echo $categorie['id_categorie']; ?>" class="categorie" style="background-color:<?php echo $categorie['color']; ?>">
                     <?php echo $categorie['code']; ?>
                 </div>
             <?php endforeach; ?>
