@@ -50,4 +50,9 @@ function getNav() {
   return $res->fetchAll(PDO::FETCH_ASSOC);
 }
 
+//fonction pour récupérer les modules
+function getModules() {
+  return true;
+}
+
 ?>

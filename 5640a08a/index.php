@@ -118,6 +118,12 @@ function getNavAdmin($IdLink){
       <a href="index.php?page=nav" class="list-group-item ';
       if($IdLink==3)$toolbar .= 'active ';
       $toolbar .= '">Editer la barre de navigation</a>
+      <a href="index.php?page=module" class="list-group-item ';
+      if($IdLink==4)$toolbar .= 'active ';
+      $toolbar .= '">Gestion des modules</a>
+      <a href="index.php?page=autre" class="list-group-item ';
+      if($IdLink==5)$toolbar .= 'active ';
+      $toolbar .= '">Autres paramètres</a>
     </div>
   </nav>';
   return $toolbar;
@@ -201,6 +207,7 @@ function getNavAdmin($IdLink){
                     <?php endforeach; ?>
 
                   </div>
+
                   <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
                     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                     <span class="sr-only">Previous</span>
@@ -232,21 +239,21 @@ function getNavAdmin($IdLink){
                             <button type="button" class="btn btn-default" aria-label="Left Align">
                               <span class="glyphicon glyphicon-move" aria-hidden="true"></span>
                             </button>
-                            <input name="id_carousel_<?php echo $image['id_carousel']; ?>" type="text" value="<?php echo $image['id_carousel']; ?>"/>
-                            <input name="ordre_<?php echo $image['id_carousel']; ?>" type="text" value="<?php echo $image['ordre']; ?>" class="weight" maxlength="5"/></td>
+                            <input name="id_carousel_<?php echo $key; ?>" type="text" value="<?php echo $image['id_carousel']; ?>"/>
+                            <input name="ordre_<?php echo $key; ?>" type="text" value="<?php echo $image['ordre']; ?>" class="weight" maxlength="5"/></td>
                             <td>
                               <a class="thumbnail">
                                 <img src="../images/carousel/<?php echo $image['id_carousel']; ?>.jpeg" alt="<?php echo $image['alt']; ?>">
                               </a>
                             </td>
                             <td>
-                              <input name="titre_<?php echo $image['id_carousel']; ?>" type="text" value="<?php echo $image['titre']; ?>"/>
+                              <input name="titre_<?php echo $key; ?>" type="text" value="<?php echo $image['titre']; ?>"/>
                             </td>
                             <td>
-                              <input name="description_<?php echo $image['id_carousel']; ?>" type="text" value="<?php echo $image['description']; ?>"/>
+                              <input name="description_<?php echo $key; ?>" type="text" value="<?php echo $image['description']; ?>"/>
                             </td>
                             <td>
-                              <input name="alt_<?php echo $image['id_carousel']; ?>" type="text" value="<?php echo $image['alt']; ?>"/>
+                              <input name="alt_<?php echo $key; ?>" type="text" value="<?php echo $image['alt']; ?>"/>
                             </td>
                           </tr>
 
@@ -255,6 +262,68 @@ function getNavAdmin($IdLink){
                       </tbody>
                     </table>
                     <button type="submit" name="type" value="carousel" class="btn btn-primary">Enregistrer</button>
+                    <button type="button" class="btn">Annuler</button>
+                  </form>
+                </div>
+              </div>
+              <script>
+                $('#Sortable tbody').sortable({
+                  handle: ".handle",
+                  stop: function(event, ui) {
+                    $('#Sortable tbody>tr').each(function(index){
+                      $(this).find('.weight').val(index+1);
+                    });
+                  }
+                });
+              </script>
+
+            <?php elseif(isset($_GET['page']) && $_GET['page'] == 'nav'): $nav = getNav() ?>
+
+              <script src='../js/jquery-sortable.js'></script>
+            </head>
+            <body>
+              <div class="flex-container">
+                <aside class="w20 mrs pam aside">
+                  <?php echo getNavAdmin(3); ?>
+                </aside>
+                <div id="main" role="main" class="flex-item-fluid pam">
+                  <h1>Edition de la barre de navigation</h1>
+
+                  <form id="postForm" method="POST" enctype="multipart/form-data">
+                    <input name="action" type="text" value="edit"/>
+                    <table id="Sortable" class="table table-hover table-striped">
+                      <thead>
+                        <tr>
+                          <th>Ordre</th>
+                          <th>Lien</th>
+                          <th>Titre</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                        <?php foreach ($nav as $key => $lien): ?>
+
+                          <tr>
+                            <td class="handle">
+                              <button type="button" class="btn btn-default" aria-label="Left Align">
+                                <span class="glyphicon glyphicon-move" aria-hidden="true"></span>
+                              </button>
+                              <input name="id_nav_<?php echo $key; ?>" type="text" value="<?php echo $lien['id_nav']; ?>"/>
+                              <input name="ordre_<?php echo $key; ?>" type="text" value="<?php echo $lien['ordre']; ?>" class="weight" maxlength="5"/>
+                            </td>
+                            <td>
+                              <input name="lien_<?php echo $key; ?>" type="text" value="<?php echo $lien['lien']; ?>"/>
+                            </td>
+                            <td>
+                              <input name="titre_<?php echo $key; ?>" type="text" value="<?php echo $lien['titre']; ?>"/>
+                            </td>
+                          </tr>
+
+                        <?php endforeach; ?>
+
+                      </tbody>
+                    </table>
+                    <button type="submit" name="type" value="nav" class="btn btn-primary">Enregistrer</button>
                     <button type="button" class="btn">Annuler</button>
                   </form>
                 </div>
@@ -269,143 +338,110 @@ function getNavAdmin($IdLink){
                   });
                 </script>
 
-              <?php elseif(isset($_GET['page']) && $_GET['page'] == 'nav'): $nav = getNav() ?>
+              <?php elseif(isset($_GET['page']) && $_GET['page'] == 'module'): $modules = getModules()?>
 
-                <script src='../js/jquery-sortable.js'></script>
               </head>
               <body>
                 <div class="flex-container">
                   <aside class="w20 mrs pam aside">
-                    <?php echo getNavAdmin(3); ?>
+                    <?php echo getNavAdmin(4); ?>
                   </aside>
                   <div id="main" role="main" class="flex-item-fluid pam">
-                    <h1>Edition de la barre de navigation</h1>
+                    <h1>Gestion des modules</h1>
 
-                    <form id="postForm" method="POST" enctype="multipart/form-data">
-                      <input name="action" type="text" value="edit"/>
-                      <table id="Sortable" class="table table-hover table-striped">
-                        <thead>
-                          <tr>
-                            <th>Ordre</th>
-                            <th>Lien</th>
-                            <th>Titre</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-
-                          <?php foreach ($nav as $key => $lien): ?>
-
-                            <tr>
-                              <td class="handle">
-                                <button type="button" class="btn btn-default" aria-label="Left Align">
-                                  <span class="glyphicon glyphicon-move" aria-hidden="true"></span>
-                                </button>
-                                <input name="id_nav_<?php echo $lien['id_nav']; ?>" type="text" value="<?php echo $lien['id_nav']; ?>"/>
-                                <input name="ordre_<?php echo $lien['id_nav']; ?>" type="text" value="<?php echo $lien['ordre']; ?>" class="weight" maxlength="5"/>
-                              </td>
-                              <td>
-                                <input name="lien_<?php echo $lien['id_nav']; ?>" type="text" value="<?php echo $lien['lien']; ?>"/>
-                              </td>
-                              <td>
-                                <input name="titre_<?php echo $lien['id_nav']; ?>" type="text" value="<?php echo $lien['titre']; ?>"/>
-                              </td>
-                            </tr>
-
-                          <?php endforeach; ?>
-
-                        </tbody>
-                      </table>
-                      <button type="submit" name="type" value="nav" class="btn btn-primary">Enregistrer</button>
-                      <button type="button" class="btn">Annuler</button>
-                    </form>
                   </div>
-                  <script>
-                    $('#Sortable tbody').sortable({
-                      handle: ".handle",
-                      stop: function(event, ui) {
-                        $('#Sortable tbody>tr').each(function(index){
-                          $(this).find('.weight').val(index+1);
-                        });
-                      }
-                    });
-                  </script>
+                </div>
+
+              <?php elseif(isset($_GET['page']) && $_GET['page'] == 'autre'): ?>
+
+              </head>
+              <body>
+                <div class="flex-container">
+                  <aside class="w20 mrs pam aside">
+                    <?php echo getNavAdmin(5); ?>
+                  </aside>
+                  <div id="main" role="main" class="flex-item-fluid pam">
+                    <h1>Autres paramètres</h1>
+
+                  </div>
+                </div>
 
 
-                <?php else: ?>
+              <?php else: ?>
 
-                  <script src="../js/summernote.min.js" type="text/javascript"></script>
-                  <script src="../js/bootstrap-colorpicker.min.js" type="text/javascript"></script>
-                  <link href="../css/bootstrap-colorpicker.min.css" type="text/css" rel="stylesheet" />
-                  <link href="../css/font-awesome.min.css" type="text/css" rel="stylesheet" />
-                  <link href="../css/summernote.css" type="text/css" rel="stylesheet" />
-                  <link href="../css/summernote-bs3.css" type="text/css" rel="stylesheet">
-                </head>
-                <body>
-                  <div class="flex-container">
-                    <aside class="w20 mrs pam aside">
-                      <?php echo getNavAdmin(1); ?>
-                    </aside>
-                    <div id="main" role="main" class="flex-item-fluid pam">
+                <script src="../js/summernote.min.js" type="text/javascript"></script>
+                <script src="../js/bootstrap-colorpicker.min.js" type="text/javascript"></script>
+                <link href="../css/bootstrap-colorpicker.min.css" type="text/css" rel="stylesheet" />
+                <link href="../css/font-awesome.min.css" type="text/css" rel="stylesheet" />
+                <link href="../css/summernote.css" type="text/css" rel="stylesheet" />
+                <link href="../css/summernote-bs3.css" type="text/css" rel="stylesheet">
+              </head>
+              <body>
+                <div class="flex-container">
+                  <aside class="w20 mrs pam aside">
+                    <?php echo getNavAdmin(1); ?>
+                  </aside>
+                  <div id="main" role="main" class="flex-item-fluid pam">
 
-                      <h1>Edition des catégories</h1>
-                      <div class="list-group">
+                    <h1>Edition des catégories</h1>
+                    <div class="list-group">
 
-                        <?php foreach (getCategories() as $key => $categorie): ?>
+                      <?php foreach (getCategories() as $key => $categorie): ?>
 
-                          <li class="list-group-item">
-                            <h2>
-                              Editer la catégorie <?php echo $categorie['id_categories']; ?>
-                              <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#categorie<?php echo $categorie['id_categories']; ?>" aria-expanded="false" aria-controls="categorie<?php echo $categorie['id_categories']; ?>">
-                                <span class="glyphicon glyphicon-plus boutton-categorie" aria-hidden="true"></span>
-                              </button>
-                            </h2>
-                            <div class="collapse" id="categorie<?php echo $categorie['id_categories']; ?>">
-                              <form id="postForm" action="index.php" method="POST" enctype="multipart/form-data">
-                                <!-- ID -->
-                                <input type="text" name="action" value="edit" class="form-control" />
-                                <input type="text" name="id_categories" value="<?php echo $categorie['id_categories']; ?>" class="form-control" />
-                                <!-- Color picker -->
-                                <div class="input-group colorpicker">
-                                  <input type="text" name="color" value="<?php echo $categorie['color']; ?>" class="form-control" />
-                                  <span class="input-group-addon"><i></i></span>
-                                </div>
-                                <!-- Ordre -->
-                                <input type="number" name="ordre" value="<?php echo $categorie['ordre']; ?>" class="form-control" />
-                                <!-- summernote -->
-                                <textarea class="input-block-level summernote" name="code" rows="18">
-                                  <?php echo $categorie['code']; ?>
-                                </textarea>
-                                <button type="submit" name="type" value="categorie" class="btn btn-primary">Enregistrer</button>
-                                <button type="button" class="btn">Annuler</button>
-                              </form>
-                            </div>
+                        <li class="list-group-item">
+                          <h2>
+                            Editer la catégorie <?php echo $categorie['id_categories']; ?>
+                            <button type="button" class="btn btn-default boutton-categorie" data-toggle="collapse" data-target="#categorie<?php echo $categorie['id_categories']; ?>" aria-expanded="false" aria-controls="categorie<?php echo $categorie['id_categories']; ?>">
+                              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                            </button>
+                          </h2>
+                          <div class="collapse" id="categorie<?php echo $categorie['id_categories']; ?>">
+                            <form id="postForm" action="index.php" method="POST" enctype="multipart/form-data">
+                              <!-- ID -->
+                              <input type="text" name="action" value="edit" class="form-control" />
+                              <input type="text" name="id_categories" value="<?php echo $categorie['id_categories']; ?>" class="form-control" />
+                              <!-- Color picker -->
+                              <div class="input-group colorpicker">
+                                <input type="text" name="color" value="<?php echo $categorie['color']; ?>" class="form-control" />
+                                <span class="input-group-addon"><i></i></span>
+                              </div>
+                              <!-- Ordre -->
+                              <input type="number" name="ordre" value="<?php echo $categorie['ordre']; ?>" class="form-control" />
+                              <!-- summernote -->
+                              <textarea class="input-block-level summernote" name="code" rows="18">
+                                <?php echo $categorie['code']; ?>
+                              </textarea>
+                              <button type="submit" name="type" value="categorie" class="btn btn-primary">Enregistrer</button>
+                              <button type="button" class="btn">Annuler</button>
+                            </form>
+                          </div>
 
-                          </li>
+                        </li>
 
-                        <?php endforeach; ?>
+                      <?php endforeach; ?>
 
-                      </div>
                     </div>
                   </div>
-                  <script type="text/javascript">
-                    $('.boutton-categorie').on('click', function(){
-                      if($(this).hasClass('glyphicon-plus')){
-                        $(this).toggleClass('glyphicon-plus glyphicon-minus');
-                      }else{
-                        $(this).toggleClass('glyphicon-minus glyphicon-plus');
-                      }
+                </div>
+                <script type="text/javascript">
+                  $('.boutton-categorie').on('click', function(){
+                    if($("span" , this ).hasClass('glyphicon-plus')){
+                      $("span" , this ).toggleClass('glyphicon-plus glyphicon-minus');
+                    }else{
+                      $("span" , this ).toggleClass('glyphicon-minus glyphicon-plus');
+                    }
+                  });
+                  $(document).ready(function() {
+                    $('.summernote').summernote({
+                      height: "500px"
                     });
-                    $(document).ready(function() {
-                      $('.summernote').summernote({
-                        height: "500px"
-                      });
-                    });
-                    $(function(){
-                      $('.colorpicker').colorpicker();
-                    });
-                  </script>
+                  });
+                  $(function(){
+                    $('.colorpicker').colorpicker();
+                  });
+                </script>
 
-                <?php endif; ?>
+              <?php endif; ?>
 
-              </body>
-              </html>
+            </body>
+            </html>
