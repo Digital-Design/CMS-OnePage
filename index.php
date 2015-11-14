@@ -1,6 +1,11 @@
 <?php
 require('inc/config.inc.php');
-require('inc/functions.inc.php');
+
+//on include tous les modeles
+foreach (glob("5640a08a/modeles/*.php") as $filename){
+    include $filename;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -110,9 +115,9 @@ require('inc/functions.inc.php');
                     $target = $(target);
                     $('html, body').stop().animate({
                        'scrollTop': $target.offset().top - $('.navbar').height()
-                    }, 500, 'swing', function () {
-                        $(document).on("scroll", onScroll);
-                    });
+                   }, 500, 'swing', function () {
+                    $(document).on("scroll", onScroll);
+                });
                 });
             });
 
