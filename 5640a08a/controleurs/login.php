@@ -8,9 +8,9 @@ if(!empty($_POST)) {
 
 	if($_POST['type'] == 'connexion'){
 		$_SESSION = $_POST;
-		$_SESSION['log'] = TRUE;
 		$success = TRUE;
 		header("LOCATION: index.php?page=categorie");
+
 	}
 	else if($_POST['type'] == 'deconnexion'){
 		session_unset();

@@ -11,8 +11,8 @@ function connectDB() {
 function str2url($str){
   $str=html_entity_decode(utf8_decode($str));
   $str = strtr($str,
-  utf8_decode('ÀÁÂÃÄÅàáâãäåÇçÒÓÔÕÖØòóôõöøÈÉÊËèéêëÌÍÎÏìíîïÙÚÛÜùúûüYÝÿýÑñ'),
-  utf8_decode('AAAAAAaaaaaaCcOOOOOOooooooEEEEeeeeIIIIiiiiUUUUuuuuYYyyNn'));
+    utf8_decode('ÀÁÂÃÄÅàáâãäåÇçÒÓÔÕÖØòóôõöøÈÉÊËèéêëÌÍÎÏìíîïÙÚÛÜùúûüYÝÿýÑñ'),
+    utf8_decode('AAAAAAaaaaaaCcOOOOOOooooooEEEEeeeeIIIIiiiiUUUUuuuuYYyyNn'));
   $str = str_replace('Æ','AE',$str);
   $str = str_replace('æ','ae',$str);
   $str = str_replace('¼','OE',$str);
@@ -29,6 +29,7 @@ function getNavAdmin($IdLink){
   <nav id="navigation" role="navigation">
     <h1>Hello, '.$_SESSION['user'].'!</h1>
     <form action="index.php?page=login" method="post">
+      <input type="text" class="form-control" name="type" value="deconnexion">
       <button type="submit" name="type" value="deconnexion" class="btn btn-default">Déconnexion</button>
     </form>
     <br/>

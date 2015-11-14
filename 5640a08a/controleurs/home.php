@@ -1,18 +1,17 @@
 <?php
 
 include_once('modeles/index.php');
-include_once('modeles/module.php');
+include_once('modeles/home.php');
 
 if(!empty($_POST)) {
 
 
 }
 
-$titre = 'Modules';
-$modules = getModules();
-$sous_titre = ' Il y a '.count($modules).' modules';
+$titre = 'Home';
+$sous_titre = ' ';
 
 // On affiche la page (vue)
 include_once('vues/template_start.php');
-include_once('vues/module.php');
+include_once('vues/home.php');
 include_once('vues/template_end.php');

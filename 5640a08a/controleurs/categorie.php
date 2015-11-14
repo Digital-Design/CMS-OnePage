@@ -27,14 +27,13 @@ if(!empty($_POST)) {
 	if($stmt->execute() or die(var_dump($stmt->ErrorInfo()))) {
 		$success = TRUE;
 	}
-	header("LOCATION: index.php?page=categorie");
 }
-else{
 
-	$navadmin = getNavAdmin(1);
-	$categories = getCategories();
+$titre = 'Catégories';
+$categories = getCategories();
+$sous_titre = 'Il y a '.count($categories).' catégories';
 
-
-	// On affiche la page (vue)
-	include_once('vues/categorie.php');
-}
+// On affiche la page (vue)
+include_once('vues/template_start.php');
+include_once('vues/categorie.php');
+include_once('vues/template_end.php');

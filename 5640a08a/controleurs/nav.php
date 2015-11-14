@@ -30,14 +30,13 @@ if(!empty($_POST)) {
 			$success = TRUE;
 		}
 	}
-	header("LOCATION: index.php?page=nav");
-
-}else{
-
-	$navadmin = getNavAdmin(3);
-	$nav = getNav();
-
-
-	// On affiche la page (vue)
-	include_once('vues/nav.php');
 }
+
+$titre = 'Barre de navigation';
+$nav = getNav();
+$sous_titre = 'Il y a '.count($nav).' liens dans la barre de navigation';
+
+// On affiche la page (vue)
+include_once('vues/template_start.php');
+include_once('vues/nav.php');
+include_once('vues/template_end.php');

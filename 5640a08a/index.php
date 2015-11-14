@@ -3,7 +3,7 @@
 include_once('../inc/config.inc.php');
 
 //gestion des routes
-if(!isset($_SESSION['log'])){
+if(!isset($_SESSION['user'])){
   require ('controleurs/login.php');
 }
 else if(!strcmp($_GET['page'], 'categorie')) {
@@ -27,6 +27,10 @@ else if(!strcmp($_GET['page'], 'parametre')) {
 else if(!strcmp($_GET['page'], 'carousel')) {
   require ('controleurs/carousel.php');
 } 
+else if(!strcmp($_GET['page'], 'home')) {
+  require ('controleurs/home.php');
+} 
 else {
   require ('controleurs/login.php');
 }
+?>

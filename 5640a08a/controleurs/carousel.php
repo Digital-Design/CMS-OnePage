@@ -32,14 +32,13 @@ if(!empty($_POST)) {
 			$success = TRUE;
 		}
 	}
-	header("LOCATION: index.php?page=carousel");
 }
-else{
 
-	$navadmin = getNavAdmin(2);
-	$carousel = getCarousel();
+$titre = 'Carousel';
+$carousel = getCarousel();
+$sous_titre = 'Il y a '.count($carousel).' images dans le carousel';
 
-
-	// On affiche la page (vue)
-	include_once('vues/carousel.php');
-}
+// On affiche la page (vue)
+include_once('vues/template_start.php');
+include_once('vues/carousel.php');
+include_once('vues/template_end.php');
