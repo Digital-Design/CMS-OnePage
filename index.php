@@ -2,7 +2,7 @@
 require('inc/config.inc.php');
 
 //on include tous les modeles
-foreach (glob("5640a08a/modeles/*.php") as $filename){
+foreach (glob("admin/modeles/*.php") as $filename){
     include $filename;
 }
 
