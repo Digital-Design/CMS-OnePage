@@ -19,6 +19,8 @@
     <link href="../css/summernote.css" type="text/css" rel="stylesheet" />
     <link href="../css/summernote-bs3.css" type="text/css" rel="stylesheet">
     <link href="../css/admin.css" type="text/css" rel="stylesheet">
+    <link href="../css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="../css/morris.css" media="all" rel="stylesheet" type="text/css" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -32,6 +34,10 @@
     <script src="../js/summernote.min.js" type="text/javascript"></script>
     <script src="../js/bootstrap-colorpicker.min.js" type="text/javascript"></script>
     <script src='../js/jquery-sortable.js' type="text/javascript"></script>
+    <script src="../js/fileinput.min.js" type="text/javascript"></script>
+    <script src="../js/fileinput_locale_fr.js" type="text/javascript"></script>
+    <script src="../js/morris.min.js" type="text/javascript"></script>
+    <script src="../js/raphael-min.js" type="text/javascript"></script>
 
 </head>
 <body>
@@ -104,7 +110,7 @@
                 <?php else : ?>
                 <li>
                 <?php endif ?>
-                    <a href="index.php?page=home"><i class="fa fa-fw fa-dashboard"></i> Home</a>
+                    <a href="index.php?page=home"><i class="fa fa-fw fa-home"></i> Home</a>
                 </li>
                 <?php if($_GET['page'] == 'categorie') : ?>
                 <li class="active">

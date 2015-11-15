@@ -35,3 +35,7 @@ html, body,#wrapper{
 	width: 500px;
 	margin: auto;
 }
+.form-horizontal .form-group {
+  margin-right: 0;
+  margin-left: 0;
+}

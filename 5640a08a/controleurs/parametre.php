@@ -12,5 +12,5 @@ $sous_titre = ' ';
 
 // On affiche la page (vue)
 include_once('vues/template_start.php');
-include_once('vues/module.php');
+include_once('vues/parametre.php');
 include_once('vues/template_end.php');
