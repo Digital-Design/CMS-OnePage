@@ -54,7 +54,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">CMS One-Page Administration</a>
+                <a class="navbar-brand" href="index.php?page=home">CMS One-Page Administration</a>
                 <a class="navbar-brand" href="../">Retour au site</a>
             </div>
             <!-- Top Menu Alerts -->
