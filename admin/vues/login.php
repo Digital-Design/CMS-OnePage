@@ -17,7 +17,7 @@
 <body>
   <h1>Hello, world!</h1>
   <form action="index.php?page=login" method="post">
-    <input type="text" class="form-control" name="type" value="connexion">
+    <input type="hidden" class="form-control" name="type" value="connexion">
     <div class="form-group">
       <label for="user">Nom d'utilisateur</label>
       <input type="text" class="form-control" name="user">

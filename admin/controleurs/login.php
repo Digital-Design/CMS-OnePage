@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 include_once('modeles/index.php');
 include_once('modeles/login.php');

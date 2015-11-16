@@ -94,7 +94,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                          <a href="#" onclick="document.getElementById('logout').submit()" ><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                          <a href="#" onclick="document.getElementById('logout').submit()" ><i class="fa fa-fw fa-power-off"></i> Déconnexion</a>
                           <form id="logout" action="index.php?page=login" method="post">
                               <input type="hidden" class="form-control" name="type" value="deconnexion" >
                           </form>
