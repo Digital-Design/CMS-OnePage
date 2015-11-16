@@ -94,7 +94,7 @@
       '<input type="number" name="ordre" value="" class="form-control" />',
       '<!-- summernote -->',
       '<textarea class="input-block-level summernote" name="code" rows="18"></textarea>',
-      '<button name="action" value="add" type="submit" class="btn btn-primary">Ajouter</button>',
+      '<button style="margin-right:5px;" name="action" value="add" type="submit" class="btn btn-primary">Ajouter</button>',
       '<button type="button" class="btn">Annuler</button>',
       '</form>',
       '</div>',
