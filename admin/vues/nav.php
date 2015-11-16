@@ -1,15 +1,12 @@
+<?php if(isset($SUCCESS) && $SUCCESS): ?>
 <div class="alert alert-success" role="alert">
-  <strong>Well done!</strong> You successfully read this important alert message.
+  <strong>Mise à jour :</strong> Les liens de la barre de navigation ont bien été mise à jour.
 </div>
-<div class="alert alert-info" role="alert">
-  <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
-</div>
-<div class="alert alert-warning" role="alert">
-  <strong>Warning!</strong> Better check yourself, you're not looking too good.
-</div>
+<?php elseif(isset($SUCCESS) && !$SUCCESS): ?>
 <div class="alert alert-danger" role="alert">
-  <strong>Oh snap!</strong> Change a few things up and try submitting again.
+  <strong>Erreur :</strong> Il y a eu un problème lors de la mise à jour des liens de la barre de navigation.
 </div>
+<?php endif ?>
 
 <button type="button" class="btn btn-default add" aria-label="Left Align">Ajouter un lien</button>
 <br/><br/>
@@ -34,15 +31,15 @@
             <button type="button" class="btn btn-default remove" aria-label="Left Align">
               <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
             </button>
-            <input name="action" type="hidden" value="edit"/>
-            <input name="id_nav_<?php echo $key; ?>" type="hidden" value="<?php echo $lien['id_nav']; ?>"/>
-            <input name="ordre_<?php echo $key; ?>" type="text" value="<?php echo $lien['ordre']; ?>" class="ordre"/>
+            <input name="action_<?php echo $key ?>" type="hidden" value="edit"/>
+            <input name="id_nav_<?php echo $key ?>" type="hidden" value="<?php echo $lien['id_nav'] ?>"/>
+            <input name="ordre_<?php echo $key ?>" type="text" value="<?php echo $lien['ordre'] ?>" class="ordre"/>
           </td>
           <td>
-            <input type="text" name="lien_<?php echo $key; ?>" value="<?php echo $lien['lien']; ?>" class="form-control"/>
+            <input type="text" name="lien_<?php echo $key ?>" value="<?php echo $lien['lien'] ?>" class="form-control"/>
           </td>
           <td>
-            <input type="text" name="titre_<?php echo $key; ?>" value="<?php echo $lien['titre']; ?>" class="form-control"/>
+            <input type="text" name="titre_<?php echo $key ?>" value="<?php echo $lien['titre'] ?>" class="form-control"/>
           </td>
         </tr>
 
@@ -50,7 +47,7 @@
 
     </tbody>
   </table>
-  <button type="submit" name="nb_lien" value="<?php echo $key; ?>" class="btn btn-primary">Enregistrer</button>
+  <button type="submit" name="nb_lien" value="<?php echo $key ?>" class="btn btn-primary">Enregistrer</button>
   <button type="button" class="btn">Annuler</button>
 </form>
 <script>
@@ -61,16 +58,16 @@
   $(document).on('click', '.remove', function(e) {
     if($(this).closest('tr').hasClass('danger')){
       $(this).closest('tr').removeClass('danger');
-      $(this).siblings('input[name=action]').val('edit');
+      $(this).siblings('input[name^=action]').val('edit');
     }else{
       $(this).closest('tr').addClass('danger');
-      $(this).siblings('input[name=action]').val('remove');
+      $(this).siblings('input[name^=action]').val('delete');
     }
   });
 
   //pour rajouter une ligne dans le tableau
   $(document).on('click', '.add', function(e) {
-    $('#Sortable').append( 
+    $('#Sortable').append(
       [
       '<tr>',
       '<td>',
@@ -80,7 +77,7 @@
       '<button type="button" class="btn btn-default remove" aria-label="Left Align" style="margin-right:5px;">',
       '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>',
       '</button>',
-      '<input name="action" type="hidden" value="add"/>',
+      '<input name="action_'+key+'" type="hidden" value="add"/>',
       '<input name="ordre_'+key+'" type="text" value="" class="ordre"/>',
       '</td>',
       '<td>',
@@ -91,8 +88,8 @@
       '</td>',
       '</tr>',
       ].join('')
-    ); 
-    
+    );
+
     //on indique le nb de input
     $("button[name='nb_lien']").val(key++);
     //on reaffiche l'ordre

@@ -13,7 +13,7 @@ function getNav() {
 function editNav($id_nav, $titre, $lien, $ordre) {
 	$bdd = connectDB();
 
-	$sql = 'UPDATE nav SET  
+	$sql = 'UPDATE nav SET
 	titre = :titre,
 	lien = :lien,
 	ordre = :ordre
@@ -33,10 +33,10 @@ function editNav($id_nav, $titre, $lien, $ordre) {
 }
 
 //fonction pour ajouter un lien de la barre de nav
-function addNav($color, $code, $ordre) {
+function addNav($titre, $lien, $ordre) {
 	$bdd = connectDB();
 
-	$sql = 'INSERT nav SET  
+	$sql = 'INSERT INTO nav SET
 	titre = :titre,
 	lien = :lien,
 	ordre = :ordre';
@@ -46,7 +46,7 @@ function addNav($color, $code, $ordre) {
 	$stmt->bindParam(':titre', $titre, PDO::PARAM_STR);
 	$stmt->bindParam(':lien', $lien, PDO::PARAM_STR);
 	$stmt->bindParam(':ordre', $ordre, PDO::PARAM_INT);
-
+	var_dump($stmt);
 	if($stmt->execute() or die(var_dump($stmt->ErrorInfo()))) {
 		return true;
 	}
