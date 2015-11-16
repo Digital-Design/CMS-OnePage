@@ -39,3 +39,8 @@ html, body,#wrapper{
   margin-right: 0;
   margin-left: 0;
 }
+
+.file-input{
+  min-width: 150%;
+  display: table-caption;
+}

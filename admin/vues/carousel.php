@@ -1,15 +1,12 @@
+<?php if(isset($SUCCESS) && $SUCCESS): ?>
 <div class="alert alert-success" role="alert">
-  <strong>Well done!</strong> You successfully read this important alert message.
+  <strong>Mise à jour :</strong> Le carousel a bien été mise à jour.
 </div>
-<div class="alert alert-info" role="alert">
-  <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
-</div>
-<div class="alert alert-warning" role="alert">
-  <strong>Warning!</strong> Better check yourself, you're not looking too good.
-</div>
+<?php elseif(isset($SUCCESS) && !$SUCCESS): ?>
 <div class="alert alert-danger" role="alert">
-  <strong>Oh snap!</strong> Change a few things up and try submitting again.
+  <strong>Erreur :</strong> Il y a eu un problème lors de la mise à jour du carousel.
 </div>
+<?php endif ?>
 
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
@@ -17,9 +14,9 @@
     <?php foreach ($carousel as $key => $image): ?>
 
       <?php if ($key == 0): ?>
-        <li data-target="#carousel-example-generic" data-slide-to="<?php echo $key; ?>" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="<?php echo $key ?>" class="active"></li>
       <?php else: ?>
-        <li data-target="#carousel-example-generic" data-slide-to="<?php echo $key; ?>"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="<?php echo $key ?>"></li>
       <?php endif; ?>
 
     <?php endforeach; ?>
@@ -34,10 +31,10 @@
         <?php else: ?>
           <div class="item">
           <?php endif; ?>
-          <img src="../images/carousel/<?php echo $image['id_carousel']; ?>.jpeg" alt="<?php echo $image['alt']; ?>">
+          <img src="../images/carousel/<?php echo $image['id_carousel'] ?>.jpeg" alt="<?php echo $image['alt'] ?>">
           <div class="carousel-caption">
-            <h3><?php echo $image['titre']; ?></h3>
-            <p><?php echo $image['description']; ?></p>
+            <h3><?php echo $image['titre'] ?></h3>
+            <p><?php echo $image['description'] ?></p>
           </div>
         </div>
 
@@ -80,23 +77,20 @@
               <button type="button" class="btn btn-default remove" aria-label="Left Align">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
               </button>
-              <input name="action_<?php echo $key; ?>" type="hidden" value="edit"/>
-              <input name="id_carousel_<?php echo $key; ?>" type="hidden" value="<?php echo $image['id_carousel']; ?>"/>
-              <input name="ordre_<?php echo $key; ?>" type="text" value="<?php echo $image['ordre']; ?>" class="weight " maxlength="10"/></td>
+              <input name="action_<?php echo $key ?>" type="hidden" value="edit"/>
+              <input name="id_carousel_<?php echo $key ?>" type="hidden" value="<?php echo $image['id_carousel'] ?>"/>
+              <input name="ordre_<?php echo $key ?>" type="text" value="<?php echo $image['ordre'] ?>" class="weight " maxlength="10"/></td>
               <td>
-                <a class="thumbnail">
-                  <img src="../images/carousel/<?php echo $image['id_carousel']; ?>.jpeg" alt="<?php echo $image['alt']; ?>">
-                </a>
-                <input name="image_<?php echo $key; ?>" class="file" type="file" multiple data-min-file-count="1">
+                <input name="image_<?php echo $key ?>" id="file_<?php echo $key ?>" value="../images/carousel/<?php echo $image['id_carousel'] ?>.jpeg" type="file" data-min-file-count="0">
               </td>
               <td>
-                <input type="text" name="titre_<?php echo $key; ?>" value="<?php echo $image['titre']; ?>" class="form-control"/>
+                <input type="text" name="titre_<?php echo $key ?>" value="<?php echo $image['titre'] ?>" class="form-control"/>
               </td>
               <td>
-                <input type="text" name="description_<?php echo $key; ?>" value="<?php echo $image['description']; ?>" class="form-control"/>
+                <input type="text" name="description_<?php echo $key ?>" value="<?php echo $image['description'] ?>" class="form-control"/>
               </td>
               <td>
-                <input type="text" name="alt_<?php echo $key; ?>" value="<?php echo $image['alt']; ?>" class="form-control"/>
+                <input type="text" name="alt_<?php echo $key ?>" value="<?php echo $image['alt'] ?>" class="form-control"/>
               </td>
             </tr>
 
@@ -104,19 +98,30 @@
 
         </tbody>
       </table>
-      <button type="submit" name="nb_carousel" value="<?php echo $key; ?>" class="btn btn-primary">Enregistrer</button>
+      <button type="submit" name="nb_carousel" value="<?php echo $key ?>" class="btn btn-primary">Enregistrer</button>
       <button type="button" class="btn">Annuler</button>
     </div>
     <script>
       var key = <?php echo $key+1 ?>;
 
-      //file upload
-      $(".file").fileinput({
-        'allowedFileExtensions' : ['jpg', 'png','gif'],
+      //file upload on charge chaque image pour chaque input
+        <?php foreach ($carousel as $key => $image): ?>
+
+      $("#file_<?php echo $key ?>").fileinput({
+        allowedFileExtensions : ['jpg', 'png','gif'],
         language: 'fr',
-        maxFileSize: 1000,
-        //uploadUrl: '#',
-      }); 
+        maxFileSize: 10000,
+        required: false,
+        showUpload: false,
+        initialPreview: [
+          "<img src='../images/carousel/<?php echo $image['id_carousel'] ?>.jpeg' class='file-preview-image' alt='<?php echo $image['alt'] ?>'",
+        ],
+        initialCaption: [
+          '../images/carousel/<?php echo $image['id_carousel'] ?>.jpeg',
+        ],
+      });
+
+        <?php endforeach; ?>
 
       //le bouton supprimer
       $(document).on('click', '.remove', function(e) {
@@ -125,13 +130,13 @@
           $(this).siblings('input[name=action]').val('edit');
         }else{
           $(this).closest('tr').addClass('danger');
-          $(this).siblings('input[name=action]').val('remove');
+          $(this).siblings('input[name^=action]').val('delete');
         }
       });
 
       //ajouter une ligne dans le tableau
       $(document).on('click', '.add', function(e) {
-        $('#Sortable').append( 
+        $('#Sortable').append(
           [
           '<tr>',
           '<td>',
@@ -146,7 +151,7 @@
           '</td>',
           '<td>',
           '<label class="control-label">Sélectionnez une image</label>',
-          '<input name="image_'+key+'" class="file" type="file" multiple data-min-file-count="1">',
+          '<input name="image_'+key+'" class="file" type="file" data-min-file-count="1">',
           '</td>',
           '<td>',
           '<input type="text" name="titre_'+key+'" value="" class="form-control"/>',
@@ -160,7 +165,7 @@
           '</tr>',
           ].join('')
 
-          ); 
+          );
         //on indique le nb de input
         $("button[name='nb_carousel']").val(key++);
 
@@ -175,7 +180,7 @@
           language: 'fr',
           maxFileSize: 1000,
           //uploadUrl: '#',
-        }); 
+        });
       });
 
     //permet d'ordoner le tableau
