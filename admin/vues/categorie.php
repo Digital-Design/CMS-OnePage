@@ -1,17 +1,12 @@
-
+<?php if(isset($SUCCESS) && $SUCCESS): ?>
 <div class="alert alert-success" role="alert">
-  <strong>Well done!</strong> You successfully read this important alert message.
+  <strong>Mise à jour :</strong> La catégorie a bien été mise à jour.
 </div>
-<div class="alert alert-info" role="alert">
-  <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
-</div>
-<div class="alert alert-warning" role="alert">
-  <strong>Warning!</strong> Better check yourself, you're not looking too good.
-</div>
+<?php elseif(isset($SUCCESS) && !$SUCCESS): ?>
 <div class="alert alert-danger" role="alert">
-  <strong>Oh snap!</strong> Change a few things up and try submitting again.
+  <strong>Erreur :</strong> Il y a eu un problème lors de la mise à jour de la catégorie.
 </div>
-
+<?php endif ?>
 
 <button type="button" class="btn btn-default add" aria-label="Left Align">Ajouter une catégorie</button>
 <br/><br/>
@@ -79,7 +74,7 @@
 
   //ajouter une categorie
   $(document).on('click', '.add', function(e) {
-    $('.list-group').prepend( 
+    $('.list-group').prepend(
       [
       '<li class="list-group-item">',
       '<h3>',
@@ -105,7 +100,7 @@
       '</div>',
       '</li>',
       ].join('')
-      ); 
+      );
   key++;
 
     //pour le summeernote

@@ -13,7 +13,7 @@ function getCategories() {
 function editCategorie($id_categorie, $color, $code, $ordre) {
 	$bdd = connectDB();
 
-	$sql = 'UPDATE categories SET  
+	$sql = 'UPDATE categories SET
 	color = :color,
 	ordre = :ordre,
 	code = :code
@@ -27,15 +27,16 @@ function editCategorie($id_categorie, $color, $code, $ordre) {
 	$stmt->bindParam(':id_categorie', $id_categorie, PDO::PARAM_INT);
 
 	if($stmt->execute() or die(var_dump($stmt->ErrorInfo()))) {
-		$success = TRUE;
+		return true;
 	}
+	return false;
 }
 
 //fonction pour ajouter une catégorie
 function addCategorie($color, $code, $ordre) {
 	$bdd = connectDB();
 
-	$sql .= 'INSERT INTO categories SET 
+	$sql = 'INSERT INTO categories SET
 	color = :color,
 	ordre = :ordre,
 	code = :code';
