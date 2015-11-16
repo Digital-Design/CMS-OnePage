@@ -81,7 +81,10 @@ function deleteCarousel($id_carousel) {
 
 //fonction pour supprimer une image des dossiers
 function deleteImageCarousel($id_carousel){
-  unlink("../images/carousel/{$id_carousel}.*");
+  foreach(glob("../images/carousel/{$id_carousel}.*") as $file){
+    unlink($file);
+  }
+  return true;
 }
 
 //fonction pour ajouter une image au carousel avec son extension
@@ -106,7 +109,7 @@ function addImageCarousel($file , $id_carousel){
   if($stmt->execute() or die(var_dump($stmt->ErrorInfo()))) {
     if (move_uploaded_file($file['tmp_name'], $nom)){
       //on attend que le fichier soit créé avant de continuer
-      while(!file_exists($nom))
+      while(!file_exists($nom)){}
       return true;
     }
   }

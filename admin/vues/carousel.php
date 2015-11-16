@@ -147,7 +147,7 @@
           '<button type="button" class="btn btn-default remove" aria-label="Left Align">',
           '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>',
           '</button>',
-          '<input name="action" type="hidden" value="add"/>',
+          '<input name="action_'+key+'" type="hidden" value="add"/>',
           '<input name="ordre_'+key+'" type="text" value="" class="ordre form-control" readonly/>',
           '</td>',
           '<td>',
@@ -177,9 +177,10 @@
 
         //on relance le file input
         $(".file").fileinput({
-          'allowedFileExtensions' : ['jpg', 'png','gif'],
+          'allowedFileExtensions' : ['jpeg', 'jpg', 'png','gif'],
           language: 'fr',
-          maxFileSize: 1000,
+          maxFileSize: 10000,
+          showUpload: false,
           //uploadUrl: '#',
         });
       });
