@@ -2,7 +2,7 @@
 require('inc/config.inc.php');
 
 //on include tous les modeles
-foreach (glob("admin/modeles/*.php") as $filename){
+foreach (glob( ADMIN_FOLDER."/modeles/*.php" ) as $filename){
     include $filename;
 }
 
@@ -19,8 +19,9 @@ foreach (glob("admin/modeles/*.php") as $filename){
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-      <![endif]-->
-      <link href="css/index.css" rel="stylesheet">
+    <![endif]-->
+    <link href="css/index.css" rel="stylesheet">
+
   </head>
   <body id="0">
 
