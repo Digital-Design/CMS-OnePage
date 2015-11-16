@@ -57,7 +57,7 @@ function addCarousel($titre, $description, $alt, $ordre, $file) {
   $stmt->bindParam(':ordre', $ordre, PDO::PARAM_INT);
 
   if($stmt->execute() or die(var_dump($stmt->ErrorInfo()))) {
-    if(addImageCarousel($file, $id_carousel))
+    if(addImageCarousel($file, $bdd->lastInsertId()))
       return true;
   }
   return false;
