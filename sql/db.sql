@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS carousel
   titre VARCHAR(20),
   description TEXT,
   alt VARCHAR(20),
+  extension VARCHAR(5),
   ordre INT(11) NOT NULL
 );
 

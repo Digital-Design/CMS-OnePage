@@ -10,7 +10,8 @@ function getCarousel() {
 }
 
 //fonction pour editer le carousel
-function editCarousel($id_carousel, $titre, $description, $alt, $ordre) {
+function editCarousel($id_carousel, $titre, $description, $alt, $ordre, $file) {
+
   $bdd = connectDB();
 
   $sql = 'UPDATE carousel SET
@@ -29,13 +30,17 @@ function editCarousel($id_carousel, $titre, $description, $alt, $ordre) {
   $stmt->bindParam(':id_carousel', $id_carousel, PDO::PARAM_INT);
 
   if($stmt->execute() or die(var_dump($stmt->ErrorInfo()))) {
+    if(isset($file) && !empty($file) && $file['error'] == 0){
+      if(addImageCarousel($file, $id_carousel))
+        return true;
+    }
     return true;
   }
   return false;
 }
 
 //fonction pour ajouter un lien de la barre de nav
-function addCarousel($titre, $description, $alt, $ordre) {
+function addCarousel($titre, $description, $alt, $ordre, $file) {
   $bdd = connectDB();
 
   $sql = 'INSERT INTO carousel SET
@@ -52,7 +57,8 @@ function addCarousel($titre, $description, $alt, $ordre) {
   $stmt->bindParam(':ordre', $ordre, PDO::PARAM_INT);
 
   if($stmt->execute() or die(var_dump($stmt->ErrorInfo()))) {
-    return true;
+    if(addImageCarousel($file, $id_carousel))
+      return true;
   }
   return false;
 }
@@ -67,8 +73,45 @@ function deleteCarousel($id_carousel) {
   $stmt->bindParam(':id_carousel', $id_carousel, PDO::PARAM_INT);
 
   if($stmt->execute() or die(var_dump($stmt->ErrorInfo()))) {
-    return true;
+    if(deleteImageCarousel($id_carousel))
+      return true;
   }
   return false;
 }
+
+//fonction pour supprimer une image des dossiers
+function deleteImageCarousel($id_carousel){
+  unlink("../images/carousel/{$id_carousel}.*");
+}
+
+//fonction pour ajouter une image au carousel avec son extension
+function addImageCarousel($file , $id_carousel){
+
+  //on recupère l'extenssion du fichier
+  $extension = strtolower(substr(strrchr($file['name'],'.'),1));
+  $nom = "../images/carousel/{$id_carousel}.{$extension}";
+
+  $bdd = connectDB();
+
+  //on ajoute l'extension en db
+  $sql = 'UPDATE carousel SET
+  extension = :extension
+  WHERE id_carousel = :id_carousel';
+
+  $stmt = $bdd->prepare($sql);
+
+  $stmt->bindParam(':extension', $extension, PDO::PARAM_STR);
+  $stmt->bindParam(':id_carousel', $id_carousel, PDO::PARAM_INT);
+
+  if($stmt->execute() or die(var_dump($stmt->ErrorInfo()))) {
+    if (move_uploaded_file($file['tmp_name'], $nom)){
+      //on attend que le fichier soit créé avant de continuer
+      while(!file_exists($nom))
+      return true;
+    }
+  }
+  return false;
+}
+
+
 ?>

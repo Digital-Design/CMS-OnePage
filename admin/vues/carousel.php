@@ -31,7 +31,7 @@
         <?php else: ?>
           <div class="item">
           <?php endif; ?>
-          <img src="../images/carousel/<?php echo $image['id_carousel'] ?>.jpeg" alt="<?php echo $image['alt'] ?>">
+          <img src="../images/carousel/<?php echo $image['id_carousel'] ?>.<?php echo $image['extension'] ?>" alt="<?php echo $image['alt'] ?>">
           <div class="carousel-caption">
             <h3><?php echo $image['titre'] ?></h3>
             <p><?php echo $image['description'] ?></p>
@@ -79,9 +79,10 @@
               </button>
               <input name="action_<?php echo $key ?>" type="hidden" value="edit"/>
               <input name="id_carousel_<?php echo $key ?>" type="hidden" value="<?php echo $image['id_carousel'] ?>"/>
-              <input name="ordre_<?php echo $key ?>" type="text" value="<?php echo $image['ordre'] ?>" class="weight " maxlength="10"/></td>
+              <input name="ordre_<?php echo $key ?>" type="text" value="<?php echo $image['ordre'] ?>" class="ordre form-control" maxlength="10" readonly/>
+              </td>
               <td>
-                <input name="image_<?php echo $key ?>" id="file_<?php echo $key ?>" value="../images/carousel/<?php echo $image['id_carousel'] ?>.jpeg" type="file" data-min-file-count="0">
+                <input name="image_<?php echo $key ?>" id="file_<?php echo $key ?>" value="" type="file" data-min-file-count="0">
               </td>
               <td>
                 <input type="text" name="titre_<?php echo $key ?>" value="<?php echo $image['titre'] ?>" class="form-control"/>
@@ -108,13 +109,13 @@
         <?php foreach ($carousel as $key => $image): ?>
 
       $("#file_<?php echo $key ?>").fileinput({
-        allowedFileExtensions : ['jpg', 'png','gif'],
+        allowedFileExtensions : ['jpeg', 'jpg', 'png','gif'],
         language: 'fr',
         maxFileSize: 10000,
         required: false,
         showUpload: false,
         initialPreview: [
-          "<img src='../images/carousel/<?php echo $image['id_carousel'] ?>.jpeg' class='file-preview-image' alt='<?php echo $image['alt'] ?>'",
+          "<img src='../images/carousel/<?php echo $image['id_carousel'] ?>.<?php echo $image['extension'] ?>' class='file-preview-image' alt='<?php echo $image['alt'] ?>'",
         ],
         initialCaption: [
           '../images/carousel/<?php echo $image['id_carousel'] ?>.jpeg',
@@ -140,14 +141,14 @@
           [
           '<tr>',
           '<td>',
-          '<button type="button" class="btn btn-default handle" aria-label="Left Align" style="margin-right:5px;">',
+          '<button type="button" class="btn btn-default handle" aria-label="Left Align">',
           '<span class="glyphicon glyphicon-move" aria-hidden="true"></span>',
           '</button>',
-          '<button type="button" class="btn btn-default remove" aria-label="Left Align" style="margin-right:5px;">',
+          '<button type="button" class="btn btn-default remove" aria-label="Left Align">',
           '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>',
           '</button>',
           '<input name="action" type="hidden" value="add"/>',
-          '<input name="ordre_'+key+'" type="text" value="" class="ordre"/>',
+          '<input name="ordre_'+key+'" type="text" value="" class="ordre form-control" readonly/>',
           '</td>',
           '<td>',
           '<label class="control-label">Sélectionnez une image</label>',
@@ -189,7 +190,7 @@
       cancel: '',
       stop: function(event, ui) {
         $('#Sortable tbody>tr').each(function(index){
-          $(this).find('.weight').val(index+1);
+          $(this).find('.ordre').val(index+1);
         });
       }
     });

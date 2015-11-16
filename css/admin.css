@@ -21,8 +21,11 @@ tr.#sortable td.placeholder:before {
 
 .handle {
     cursor: move;
+    float: left;
 }
-
+.remove{
+  float: left;
+}
 html, body,#wrapper{
 	height: 100%;
 }
@@ -41,6 +44,10 @@ html, body,#wrapper{
 }
 
 .file-input{
-  min-width: 150%;
+  min-width: 120%;
   display: table-caption;
+}
+
+.ordre{
+  width: 40px;
 }

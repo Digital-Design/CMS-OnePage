@@ -66,7 +66,7 @@ foreach (glob( ADMIN_FOLDER."/modeles/*.php" ) as $filename){
                           <?php else: ?>
                               <div class="item">
                               <?php endif; ?>
-                              <img src="images/carousel/<?php echo $image['id_carousel']; ?>.jpeg" alt="<?php echo $image['alt']; ?>">
+                              <img src="images/carousel/<?php echo $image['id_carousel'] ?>.<?php echo $image['extension'] ?>" alt="<?php echo $image['alt']; ?>">
                               <div class="carousel-caption">
                                 <h3><?php echo $image['titre']; ?></h3>
                                 <p><?php echo $image['description']; ?></p>
