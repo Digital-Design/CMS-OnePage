@@ -52,6 +52,19 @@
     </a>
   </div>
   <br/>
+
+    <form action="index.php?page=carousel" method="POST"  class="form-inline">
+    <div class="form-group">
+      <label>Changer le temps entre chaques images</label>
+      <div class="input-group">
+        <input name="temps" value ="" type="number" min="0" max="60" class="form-control">
+        <div class="input-group-addon">Seconde</div>
+      </div>
+    </div>
+    <button name="action" value="temps" type="submit" class="btn btn-primary">Enregistrer</button>
+  </form>
+
+  <br/>
   <button type="button" class="btn btn-default add" aria-label="Left Align">Ajouter une image dans le carousel</button>
   <br/><br/>
   <form action="index.php?page=carousel" method="POST" enctype="multipart/form-data">
