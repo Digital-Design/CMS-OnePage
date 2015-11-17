@@ -26,7 +26,7 @@
       <a id="contact">
         <div class="panel-footer">
           <span class="pull-left">Voir plus de Détails</span>
-          <span class="pull-right"><i class="fa fa-minus-circle"></i></span>
+          <span class="pull-right"><i class="fa fa-plus-circle"></i></span>
           <div class="clearfix"></div>
         </div>
       </a>
@@ -34,8 +34,8 @@
         <?php foreach ($contact as $key => $commentaire): ?>
 
           <a class="list-group-item">
-            <h4 class="list-group-item-heading"><?php echo $commentaire['mail'] ?> - <?php echo $commentaire['nom'] ?></h4>
-            <p class="list-group-item-text"><?php echo $commentaire['commentaire'] ?></p>
+            <h4 class="list-group-item-heading" style="word-wrap: break-word;"><?php echo $commentaire['mail'] ?> - <?php echo $commentaire['nom'] ?></h4>
+            <p class="list-group-item-text" style="word-wrap: break-word;"><?php echo $commentaire['commentaire'] ?></p>
           </a>
 
         <?php endforeach; ?>
@@ -43,6 +43,9 @@
     <?php endif; ?>
   </div>
 </div>
+
+
+
 
 <script type="text/javascript">
   $(document).on('click', '#contact', function(e) {
