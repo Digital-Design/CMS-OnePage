@@ -51,3 +51,7 @@ html, body,#wrapper{
 .ordre{
   width: 40px;
 }
+
+#carousel-example-generic, .carousel-inner{
+  height: 300px;
+}

@@ -24,3 +24,7 @@ body {
   float: left;
   width: 100%;
 }
+
+#carousel-example-generic, .carousel-inner{
+  height: 100%;
+}
