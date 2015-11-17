@@ -24,12 +24,8 @@
       <?php foreach ($nav as $key => $lien): ?>
 
         <tr>
-<<<<<<< HEAD
           <td style="display:flex;width: 300px;">
-=======
           <td>
->>>>>>> a61cce58d6c727b6b81c876f79edecd4aeb6dd5c
-
             <button type="button" class="btn btn-default handle" aria-label="Left Align">
               <span class="glyphicon glyphicon-move" aria-hidden="true"></span>
             </button>
