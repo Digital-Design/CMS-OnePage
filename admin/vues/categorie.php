@@ -44,7 +44,7 @@
           <!-- Ordre -->
           <input type="number" name="ordre" value="<?php echo $categorie['ordre']; ?>" class="form-control" />
           <!-- summernote -->
-          <textarea class="input-block-level summernote" name="code" rows="18"><?php echo $categorie['code']; ?></textarea>
+          <textarea class="input-block-level summernote" name="code" rows="180"></textarea>
 
           <button name="action" value="edit" type="submit" class="btn btn-primary">Enregistrer</button>
           <?php if($categorie['type'] == 1): ?>
@@ -74,7 +74,7 @@
   //pour le summeernote
   $(document).ready(function() {
     $('.summernote').summernote({
-      height: "500px",
+      height: 500,
       /*onImageUpload: function(files, editor, welEditable) {
         sendFile(files[0], editor, welEditable);
       }*/
@@ -84,7 +84,6 @@
   //color picker
   $(document).ready(function() {
     $('.colorpicker').colorpicker({
-
     });
   });
 
@@ -103,6 +102,7 @@
       '</h3>',
       '<div class="collapse in" aria-expanded="true" id="id_categorie_'+key+'">',
       '<form action="index.php?page=categorie" method="POST" enctype="multipart/form-data">',
+      '<input type="number" min="1" max="2" name="type" value="1" class="form-control" />',
       '<!-- Color picker -->',
       '<div class="input-group colorpicker">',
       '<input type="text" name="color" value="" class="form-control" />',

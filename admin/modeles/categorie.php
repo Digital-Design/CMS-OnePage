@@ -1,5 +1,7 @@
 <?php
 
+include_once('modeles/nav.php');
+
 //fonction pour récupérer les catégories
 function getCategories() {
   $bdd = connectDB();
@@ -52,7 +54,9 @@ function addCategorie($color, $code, $ordre, $type) {
 	$stmt->bindParam(':type', $type, PDO::PARAM_INT);
 
 	if($stmt->execute() or die(var_dump($stmt->ErrorInfo()))) {
-		return true;
+		//on creer un lien dans la nav pour la nouvelle catégorie
+		if(addNav('Catégorie '.$bdd->lastInsertId(), '#'.$bdd->lastInsertId(), 999))
+			return true;
 	}
 	return false;
 }
