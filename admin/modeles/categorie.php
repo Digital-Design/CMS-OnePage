@@ -10,13 +10,14 @@ function getCategories() {
 }
 
 //fonction pour editer une catégorie
-function editCategorie($id_categorie, $color, $code, $ordre) {
+function editCategorie($id_categorie, $color, $code, $ordre, $type) {
 	$bdd = connectDB();
 
 	$sql = 'UPDATE categories SET
 	color = :color,
 	ordre = :ordre,
-	code = :code
+	code = :code,
+	type = :type
 	WHERE id_categorie = :id_categorie';
 
 	$stmt = $bdd->prepare($sql);
@@ -25,6 +26,7 @@ function editCategorie($id_categorie, $color, $code, $ordre) {
 	$stmt->bindParam(':ordre', $ordre, PDO::PARAM_INT);
 	$stmt->bindParam(':code', $code, PDO::PARAM_STR);
 	$stmt->bindParam(':id_categorie', $id_categorie, PDO::PARAM_INT);
+	$stmt->bindParam(':type', $type, PDO::PARAM_INT);
 
 	if($stmt->execute() or die(var_dump($stmt->ErrorInfo()))) {
 		return true;
@@ -33,12 +35,13 @@ function editCategorie($id_categorie, $color, $code, $ordre) {
 }
 
 //fonction pour ajouter une catégorie
-function addCategorie($color, $code, $ordre) {
+function addCategorie($color, $code, $ordre, $type) {
 	$bdd = connectDB();
 
 	$sql = 'INSERT INTO categories SET
 	color = :color,
 	ordre = :ordre,
+	type = :type,
 	code = :code';
 
 	$stmt = $bdd->prepare($sql);
@@ -46,6 +49,7 @@ function addCategorie($color, $code, $ordre) {
 	$stmt->bindParam(':color', $color, PDO::PARAM_STR);
 	$stmt->bindParam(':ordre', $ordre, PDO::PARAM_INT);
 	$stmt->bindParam(':code', $code, PDO::PARAM_STR);
+	$stmt->bindParam(':type', $type, PDO::PARAM_INT);
 
 	if($stmt->execute() or die(var_dump($stmt->ErrorInfo()))) {
 		return true;

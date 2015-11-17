@@ -24,7 +24,11 @@
       <?php foreach ($nav as $key => $lien): ?>
 
         <tr>
+<<<<<<< HEAD
           <td style="display:flex;width: 300px;">
+=======
+          <td>
+>>>>>>> a61cce58d6c727b6b81c876f79edecd4aeb6dd5c
 
             <button type="button" class="btn btn-default handle" aria-label="Left Align">
               <span class="glyphicon glyphicon-move" aria-hidden="true"></span>
@@ -73,14 +77,14 @@
       [
       '<tr>',
       '<td>',
-      '<button type="button" class="btn btn-default handle" aria-label="Left Align" style="margin-right:5px;">',
+      '<button type="button" class="btn btn-default handle" aria-label="Left Align">',
       '<span class="glyphicon glyphicon-move" aria-hidden="true"></span>',
       '</button>',
-      '<button type="button" class="btn btn-default remove" aria-label="Left Align" style="margin-right:5px;">',
+      '<button type="button" class="btn btn-default remove" aria-label="Left Align">',
       '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>',
       '</button>',
       '<input name="action_'+key+'" type="hidden" value="add"/>',
-      '<input name="ordre_'+key+'" type="text" value="" class="ordre"/>',
+      '<input name="ordre_'+key+'" type="text" value="" class="ordre form-control" readonly/>',
       '</td>',
       '<td>',
       '<input type="text" name="lien_'+key+'" value="" class="form-control"/>',
