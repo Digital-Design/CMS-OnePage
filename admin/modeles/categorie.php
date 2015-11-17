@@ -1,7 +1,5 @@
 <?php
 
-include_once('modeles/nav.php');
-
 //fonction pour récupérer les catégories
 function getCategories() {
   $bdd = connectDB();

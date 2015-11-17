@@ -1,5 +1,6 @@
 <?php
 
+include_once('modeles/nav.php');
 include_once('modeles/index.php');
 include_once('modeles/categorie.php');
 /*
