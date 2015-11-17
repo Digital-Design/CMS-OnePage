@@ -96,29 +96,31 @@ foreach (glob( ADMIN_FOLDER."/modeles/*.php" ) as $filename){
             <?php endforeach; ?>
         <?php endif; ?>
 
-        <?php if (0): ?>
+        <?php if (1): ?>
             <!-- Contact Form -->
             <div class="row" id="contact">
                 <div class="col-sm-6 col-sm-offset-3">
                     <h3>Contactez-moi !</h3>
+                    <br/>
+                    <div id="msgValideSubmit" class="hidden alert alert-success" role="alert">Le message a bien été envoyé</div>
+                    <div id="msgErrorSubmit" class="hidden alert alert-danger" role="alert">Il y a eu une erreur lors de l'envoi du message</div>
+                    <br/>
                     <form role="form" id="contactForm">
                      <div class="row">
                         <div class="form-group col-sm-6">
                             <label for="name" class="h4">Nom</label>
-                            <input type="text" class="form-control" id="name" placeholder="Entrez votre Nom" required>
+                            <input type="text" class="form-control" id="name" name="nom" placeholder="Entrez votre Nom" required>
                         </div>
                         <div class="form-group col-sm-6">
                             <label for="email" class="h4">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="Entrez votre Email" required>
+                            <input type="email" class="form-control" id="email" name="mail" placeholder="Entrez votre Email" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="message" class="h4 ">Message</label>
-                        <textarea id="message" class="form-control" rows="5" placeholder="Entrez votre message" required></textarea>
+                        <textarea id="message" class="form-control" rows="5" name="commentaire" placeholder="Entrez votre message" required></textarea>
                     </div>
-                    <button type="submit" id="form-submit" class="btn btn-primary btn-lg pull-right ">Envoyer</button>
-                    <div id="msgValideSubmit" class="h3 text-center hidden">Le message a bien été envoyé</div>
-                    <div id="msgErrorSubmit" class="h3 text-center hidden">Il y a eu une erreur lors de l'envoi du message</div>
+                    <button type="submit" value="submit" id="form-submit" class="btn btn-primary btn-lg pull-right ">Envoyer</button>
                     </form>
                 </div>
             </div>
@@ -137,7 +139,7 @@ foreach (glob( ADMIN_FOLDER."/modeles/*.php" ) as $filename){
 
                     $('a').parent().each(function () {
                         $(this).removeClass('active');
-                    })
+                    });
                     $(this).parent().addClass('active');
 
                     var target = this.hash;
@@ -165,20 +167,18 @@ foreach (glob( ADMIN_FOLDER."/modeles/*.php" ) as $filename){
                     }
                 });
             }
+                console.log('message');
 
             //quand on valide le formulaire de contact
-            $("#contactForm").submit(function(event){
+            $('#contactForm').on('submit', function (event) {
                 event.preventDefault();
-                var name = $("#name").val();
-                var email = $("#email").val();
-                var message = $("#message").val();
-
                 $.ajax({
                     type: "POST",
-                    url: "php/form-process.php",
-                    data: "name=" + name + "&email=" + email + "&message=" + message +"&action=contact",
+                    url: "inc/form-contact.php",
+                    data: $(this).serialize(),
                     success : function(text){
                         if (text == "success"){
+                            $("#contactForm").hide(400);
                             $( "#msgValideSubmit" ).removeClass( "hidden" );
                         }else{
                             $( "#msgErrorSubmit" ).removeClass( "hidden" );

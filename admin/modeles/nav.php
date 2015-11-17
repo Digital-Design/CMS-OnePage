@@ -46,7 +46,7 @@ function addNav($titre, $lien, $ordre) {
 	$stmt->bindParam(':titre', $titre, PDO::PARAM_STR);
 	$stmt->bindParam(':lien', $lien, PDO::PARAM_STR);
 	$stmt->bindParam(':ordre', $ordre, PDO::PARAM_INT);
-	var_dump($stmt);
+
 	if($stmt->execute() or die(var_dump($stmt->ErrorInfo()))) {
 		return true;
 	}

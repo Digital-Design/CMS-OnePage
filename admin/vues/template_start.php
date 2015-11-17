@@ -1,3 +1,12 @@
+<?php
+include_once('modeles/index.php');
+include_once('modeles/home.php');
+
+//on recupere les contacts pour les notifs
+$contact = getContact();
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -63,26 +72,14 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu alert-dropdown">
                         <li>
-                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
+                            <a href="#">Commentaire(s) : <span class="label label-primary"><?php echo count($contact) ?></span></a>
                         </li>
                         <li>
-                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
+                            <a href="#">Visite(s) : <span class="label label-success">XX</span></a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#">View All</a>
+                            <a href="#">Tout consulter</a>
                         </li>
                     </ul>
                 </li>
