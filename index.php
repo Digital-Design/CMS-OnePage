@@ -178,7 +178,7 @@ foreach (glob( ADMIN_FOLDER."/modeles/*.php" ) as $filename){
                     data: $(this).serialize(),
                     success : function(text){
                         if (text == "success"){
-                            $("#contactForm").hide(400);
+                            $("#contactForm").toggle(400);
                             $( "#msgValideSubmit" ).removeClass( "hidden" );
                         }else{
                             $( "#msgErrorSubmit" ).removeClass( "hidden" );
