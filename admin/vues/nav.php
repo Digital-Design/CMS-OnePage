@@ -14,7 +14,7 @@
   <table id="Sortable" class="table table-hover table-striped table-bordered">
     <thead>
       <tr>
-        <th style="width:200px;">Actions</th>
+        <th style="width: 300px;">Actions</th>
         <th>Lien</th>
         <th>Titre</th>
       </tr>
@@ -24,7 +24,7 @@
       <?php foreach ($nav as $key => $lien): ?>
 
         <tr>
-          <td style="display:flex;width:200px;">
+          <td style="display:flex;width: 300px;">
 
             <button type="button" class="btn btn-default handle" aria-label="Left Align">
               <span class="glyphicon glyphicon-move" aria-hidden="true"></span>
@@ -34,8 +34,7 @@
             </button>
             <input name="action_<?php echo $key ?>" type="hidden" value="edit"/>
             <input name="id_nav_<?php echo $key ?>" type="hidden" value="<?php echo $lien['id_nav'] ?>"/>
-            <input class="ordre form-control" name="ordre_<?php echo $key ?>" type="text" value="<?php echo $lien['ordre'] ?>" readonly/>
-
+            <input class="ordre form-control " name="ordre_<?php echo $key ?>" type="text" value="<?php echo $lien['ordre'] ?>" readonly/>
             </td>
           </td>
           <td>
