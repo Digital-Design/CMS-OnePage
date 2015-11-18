@@ -23,35 +23,4 @@ function str2url($str){
   return $str;
 }
 
-//fonction pour avoir la barre de nav admin
-function getNavAdmin($IdLink){
-  $toolbar = '
-  <nav id="navigation" role="navigation">
-    <h1>Hello, '.$_SESSION['user'].'!</h1>
-    <form action="index.php?page=login" method="post">
-      <input type="text" class="form-control" name="type" value="deconnexion">
-      <button type="submit" name="type" value="deconnexion" class="btn btn-default">Déconnexion</button>
-    </form>
-    <br/>
-    <div class="list-group">
-      <a href="index.php?page=categorie" class="list-group-item ';
-      if($IdLink==1)$toolbar .= 'active ';
-      $toolbar .= '">Editer les catégories</a>
-      <a href="index.php?page=carousel" class="list-group-item ';
-      if($IdLink==2)$toolbar .= 'active ';
-      $toolbar .= '">Editer le carousel</a>
-      <a href="index.php?page=nav" class="list-group-item ';
-      if($IdLink==3)$toolbar .= 'active ';
-      $toolbar .= '">Editer la barre de navigation</a>
-      <a href="index.php?page=module" class="list-group-item ';
-      if($IdLink==4)$toolbar .= 'active ';
-      $toolbar .= '">Gestion des modules</a>
-      <a href="index.php?page=parametre" class="list-group-item ';
-      if($IdLink==5)$toolbar .= 'active ';
-      $toolbar .= '">Autres paramètres</a>
-    </div>
-  </nav>';
-  return $toolbar;
-}
-
 ?>

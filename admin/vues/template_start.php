@@ -1,9 +1,9 @@
 <?php
 include_once('modeles/index.php');
-include_once('modeles/home.php');
+include_once('modeles/contact.php');
 
 //on recupere les contacts pour les notifs
-$contact = getContact();
+$contactstats = getWeekContacts();
 
 ?>
 
@@ -30,6 +30,7 @@ $contact = getContact();
     <link href="../css/admin.css" type="text/css" rel="stylesheet">
     <link href="../css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
     <link href="../css/morris.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="../css/sortable-theme-bootstrap.css" rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -47,6 +48,7 @@ $contact = getContact();
     <script src="../js/fileinput_locale_fr.js" type="text/javascript"></script>
     <script src="../js/morris.min.js" type="text/javascript"></script>
     <script src="../js/raphael-min.js" type="text/javascript"></script>
+    <script src="../js/sortable.min.js" type="text/javascript"></script>
 
 </head>
 <body>
@@ -72,14 +74,17 @@ $contact = getContact();
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu alert-dropdown">
                         <li>
-                            <a href="#">Commentaire(s) : <span class="label label-primary"><?php echo count($contact) ?></span></a>
+                            <a>Commentaire(s) : <span class="label label-primary"><?php echo count($contactstats) ?></span></a>
                         </li>
                         <li>
-                            <a href="#">Visite(s) : <span class="label label-success">XX</span></a>
+                            <a>Visite(s) : <span class="label label-success">XX</span></a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#">Tout consulter</a>
+                            <a href="index.php?page=contact">Consulter les messages</a>
+                        </li>
+                        <li>
+                            <a href="index.php?page=analytique">Consulter les visites</a>
                         </li>
                     </ul>
                 </li>
@@ -136,6 +141,20 @@ $contact = getContact();
                 <li>
                 <?php endif ?>
                     <a href="index.php?page=module"><i class="fa fa-fw fa-desktop"></i> Gestion des modules</a>
+                </li>
+                <?php if($_GET['page'] == 'contact') : ?>
+                <li class="active">
+                <?php else : ?>
+                <li>
+                <?php endif ?>
+                    <a href="index.php?page=contact"><i class="fa fa-fw fa-comments"></i> Contact</a>
+                </li>
+                <?php if($_GET['page'] == 'analytique') : ?>
+                <li class="active">
+                <?php else : ?>
+                <li>
+                <?php endif ?>
+                    <a href="index.php?page=analytique"><i class="fa fa-fw fa-users"></i> Analytique</a>
                 </li>
                 <?php if($_GET['page'] == 'parametre') : ?>
                 <li class="active">

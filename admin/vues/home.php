@@ -8,42 +8,65 @@
  </div>
 </div>
 
-<div class="col-lg-4 col-md-6">
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      <div class="row">
-        <div class="col-xs-3">
-          <i class="fa fa-comments fa-5x"></i>
-        </div>
-        <div class="col-xs-9 text-right">
-          <div class="huge"><?php echo count($contact) ?></div>
-          <div>Commentaire(s) cette semaine !</div>
+<div class="row">
+  <div class="col-lg-4 col-md-6">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-xs-3">
+            <i class="fa fa-comments fa-5x"></i>
+          </div>
+          <div class="col-xs-9 text-right">
+            <div class="huge"><?php echo count($contactstats) ?></div>
+            <div>Commentaire(s) cette semaine !</div>
+          </div>
         </div>
       </div>
+      <?php if($contactstats): ?>
+        <!-- CONTACT -->
+        <a id="contact">
+          <div class="panel-footer">
+            <span class="pull-left">Voir plus de Détails</span>
+            <span class="pull-right"><i class="fa fa-plus-circle"></i></span>
+            <div class="clearfix"></div>
+          </div>
+        </a>
+        <div class="list-group" id="commentaires" style="display:none;">
+          <?php foreach ($contactstats as $key => $commentaire): ?>
+
+            <a class="list-group-item">
+              <h4 class="list-group-item-heading" style="word-wrap: break-word;"><?php echo $commentaire['mail'] ?> - <?php echo $commentaire['nom'] ?></h4>
+              <p class="list-group-item-text" style="word-wrap: break-word;"><?php echo $commentaire['commentaire'] ?></p>
+            </a>
+
+          <?php endforeach; ?>
+        </div>
+      <?php endif; ?>
     </div>
-    <?php if($contact): ?>
-      <!-- CONTACT -->
-      <a id="contact">
+  </div>
+  <div class="col-lg-4 col-md-6">
+    <div class="panel panel-green">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-xs-3">
+            <i class="fa fa-users fa-5x"></i>
+          </div>
+          <div class="col-xs-9 text-right">
+            <div class="huge">12</div>
+            <div>Visite(s) cette semaine !</div>
+          </div>
+        </div>
+      </div>
+      <a href="index.php?page=analytique">
         <div class="panel-footer">
           <span class="pull-left">Voir plus de Détails</span>
-          <span class="pull-right"><i class="fa fa-plus-circle"></i></span>
+          <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
           <div class="clearfix"></div>
         </div>
       </a>
-      <div class="list-group" id="commentaires" style="display:none;">
-        <?php foreach ($contact as $key => $commentaire): ?>
-
-          <a class="list-group-item">
-            <h4 class="list-group-item-heading" style="word-wrap: break-word;"><?php echo $commentaire['mail'] ?> - <?php echo $commentaire['nom'] ?></h4>
-            <p class="list-group-item-text" style="word-wrap: break-word;"><?php echo $commentaire['commentaire'] ?></p>
-          </a>
-
-        <?php endforeach; ?>
-      </div>
-    <?php endif; ?>
+    </div>
   </div>
 </div>
-
 
 
 

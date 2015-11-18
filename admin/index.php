@@ -30,6 +30,12 @@ else if(!strcmp($_GET['page'], 'carousel')) {
 else if(!strcmp($_GET['page'], 'home')) {
   require ('controleurs/home.php');
 }
+else if(!strcmp($_GET['page'], 'contact')) {
+  require ('controleurs/contact.php');
+}
+else if(!strcmp($_GET['page'], 'analytique')) {
+  require ('controleurs/analytique.php');
+}
 else {
   require ('controleurs/login.php');
 }
