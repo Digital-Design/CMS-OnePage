@@ -78,7 +78,7 @@ function pageLoaded() {
   $ip = $_SERVER['REMOTE_ADDR'];
   //Récupération navigateur
 //------> Erreur :  get_browser(): browscap ini directive not set in
-  $navigateur = get_browser(null, true)['parent'];
+  $navigateur = get_browser(null, true);
   //Récupération page
   $page = preg_replace('~^(.*[\\\/])~','',$_SERVER['REQUEST_URI']);
 
@@ -87,6 +87,6 @@ function pageLoaded() {
 
   //si on accepte l'ip on l'ajoute
   if(valideIp($ip))
-    addAnalytique($ip, $navigateur, $page);
+    addAnalytique($ip, $navigateur['parent'], $page);
 
 }
