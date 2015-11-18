@@ -6,6 +6,8 @@ foreach (glob( ADMIN_FOLDER."/modeles/*.php" ) as $filename){
     include $filename;
 }
 
+pageLoaded();
+
 ?>
 
 <!DOCTYPE html>

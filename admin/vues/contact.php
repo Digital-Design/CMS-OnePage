@@ -20,6 +20,7 @@
         <th>Nom</th>
         <th>Mail</th>
         <th>Commentaire</th>
+        <th>Date</th>
       </tr>
     </thead>
     <tbody>
@@ -36,6 +37,7 @@
           <td><?php echo $com['nom'] ?></td>
           <td><?php echo $com['mail'] ?></td>
           <td><?php echo $com['commentaire'] ?></td>
+          <td><?php echo $com['date_creation'] ?></td>
         </tr>
       <?php endforeach; ?>
     </tbody>

@@ -1,9 +1,11 @@
 <?php
 include_once('modeles/index.php');
 include_once('modeles/contact.php');
+include_once('modeles/analytique.php');
 
 //on recupere les contacts pour les notifs
 $contactstats = getWeekContacts();
+$analytiquestats = getWeekAnalytiques();
 
 ?>
 
@@ -77,7 +79,7 @@ $contactstats = getWeekContacts();
                             <a>Commentaire(s) : <span class="label label-primary"><?php echo count($contactstats) ?></span></a>
                         </li>
                         <li>
-                            <a>Visite(s) : <span class="label label-success">XX</span></a>
+                            <a>Visite(s) : <span class="label label-success"><?php echo count($analytiquestats) ?></span></a>
                         </li>
                         <li class="divider"></li>
                         <li>
