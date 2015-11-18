@@ -16,6 +16,14 @@ function getWeekAnalytiques() {
   return $res->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function getGraphAnalytique(){
+  $bdd = connectDB();
+  $sql = "SELECT *, COUNT(id_analytique) AS value, DATE_FORMAT(date_creation,'%Y-%m-%d') AS date_now FROM analytique WHERE date_creation >= DATE_SUB(CURDATE(), INTERVAL DAYOFWEEK(CURDATE())-1 DAY) GROUP BY ip";
+  $res = $bdd->prepare($sql);
+  $res->execute();
+  return $res->fetchAll(PDO::FETCH_ASSOC);
+}
+
 function addAnalytique($ip, $navigateur, $page) {
   $bdd = connectDB();
 
