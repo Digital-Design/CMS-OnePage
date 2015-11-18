@@ -4,7 +4,7 @@
    <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Statistiques de visite</h3>
  </div>
  <div class="panel-body">
-   <div id="myfirstchart" style="height: 250px;"></div>
+   <div id="visiteanalytique" style="height: 250px;"></div>
  </div>
 </div>
 
@@ -71,33 +71,42 @@
 
 
 <script type="text/javascript">
-  $(document).on('click', '#contact', function(e) {
-    if($("div span i" , this ).hasClass('fa-plus-circle')){
-      $("div span i" , this ).toggleClass('fa-plus-circle fa-minus-circle');
-      $("#commentaires").toggle(500);
-    }else{
-      $("div span i" , this ).toggleClass('fa-minus-circle fa-plus-circle');
-      $("#commentaires").show(500);
+
+//deroulant pour les contacts
+$(document).on('click', '#contact', function(e) {
+  if($("div span i" , this ).hasClass('fa-plus-circle')){
+    $("div span i" , this ).toggleClass('fa-plus-circle fa-minus-circle');
+    $("#commentaires").toggle(500);
+  }else{
+    $("div span i" , this ).toggleClass('fa-minus-circle fa-plus-circle');
+    $("#commentaires").show(500);
+  }
+});
+
+//traitement des données qui va permettre d'afficher 0 visiteurs quand il n'y a pas de données
+var result = [];
+var previous = null;
+var data = <?php echo(json_encode($analytiquegraphstats)) ?>;
+for (var i in data) {
+  var item = data[i];
+  if (previous != null){
+    var donnees = new Date(item.date_analytique);
+    for (var day = previous.getDate() + 1; day < donnees.getDate() ; day++){
+      var date = previous;
+      date.setDate(date.getDate() + 1);
+      result.push({day: (date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate())) , value: 0 });
     }
-  });
+  }
+  result.push({day: item.date_analytique, value: item.value });
+  previous = new Date(item.date_analytique);
+}
 
-
-  new Morris.Line({
-  // ID of the element in which to draw the chart.
-  element: 'myfirstchart',
-  // Chart data records -- each entry in this array corresponds to a point on
-  // the chart.
-  data: [
-  <?php foreach ($analytiquegraphstats as $key => $stat): ?>
-    { day: '<?php echo $stat["date_now"]?>', value: <?php echo $stat["value"]?> },
-  <?php endforeach; ?>
-  ],
-  // The name of the data record attribute that contains x-values.
+//chargement du graphique
+new Morris.Line({
+  element: 'visiteanalytique',
+  data: result,
   xkey: 'day',
-  // A list of names of data record attributes that contain y-values.
   ykeys: ['value'],
-  // Labels for the ykeys -- will be displayed when you hover over the
-  // chart.
-  labels: ['Value']
+  labels: ['Visiter(s)']
 });
 </script>
