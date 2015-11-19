@@ -69,3 +69,11 @@ Source : http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch21_:_
 <ul>
   <li>Voir architecture</li>
 </ul>
+
+#### Installation
+
+You need Gulp installed globally:
+
+```sh
+$ npm i -g gulp
+```
