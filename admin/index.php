@@ -42,6 +42,7 @@ elseif(isset($_GET['page'])){
     require ('controleurs/home.php');
   }
 }else {
+  $_GET['page'] = 'home';
   require ('controleurs/home.php');
 }
 ?>
