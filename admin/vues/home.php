@@ -76,7 +76,7 @@
 $(document).on('click', '#contact', function(e) {
   if($("div span i" , this ).hasClass('fa-plus-circle')){
     $("div span i" , this ).toggleClass('fa-plus-circle fa-minus-circle');
-    $("#commentaires").toggle(500);
+    $("#commentaires").hide(500);
   }else{
     $("div span i" , this ).toggleClass('fa-minus-circle fa-plus-circle');
     $("#commentaires").show(500);

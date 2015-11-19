@@ -169,7 +169,6 @@ pageLoaded();
                     }
                 });
             }
-                console.log('message');
 
             //quand on valide le formulaire de contact
             $('#contactForm').on('submit', function (event) {
@@ -179,8 +178,10 @@ pageLoaded();
                     url: "inc/form-contact.php",
                     data: $(this).serialize(),
                     success : function(text){
+                        console.log(text);
                         if (text == "success"){
                             $("#contactForm").toggle(400);
+                            $( "#msgErrorSubmit" ).addClass( "hidden" );
                             $( "#msgValideSubmit" ).removeClass( "hidden" );
                         }else{
                             $( "#msgErrorSubmit" ).removeClass( "hidden" );

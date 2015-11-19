@@ -61,7 +61,7 @@ function deleteAnalytique($id_analytique) {
 function valideIp($ip) {
 
   //checker l'ip dans la liste d'ip 'blacklistées'
-  if(!in_array($ip, unserialize(IP_BLACKLIST))) return false;
+  if(in_array($ip, unserialize(IP_BLACKLIST))) return false;
 
   $bdd = connectDB();
   $sql = 'SELECT *, NOW() AS date_now FROM analytique WHERE ip=:ip ORDER BY date_creation DESC LIMIT 1;';
@@ -71,13 +71,9 @@ function valideIp($ip) {
 
   if($stmt->execute() or die(var_dump($stmt->ErrorInfo()))) {
     //on regarde si l'ip existe pas deja
-    if($stmt->rowCount()){
-      //Si oui -> On regarde si la page a été chargé dans les 15 deernières minutes
-      $LASTCHECK = TEMPS_ANALYTIQUE;
-      //......
-      //Si non -> Création d'une entrée
-      if(1) return true;
-      //Si oui -> On ne fait rien
+    if($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+      //si elle date pas de plus de XX min
+      if((strtotime($row['date_now']) - strtotime($row['date_creation'])) > TEMPS_ANALYTIQUE % 3600) return true;
     }
     //sinon on ajoute
     else{
