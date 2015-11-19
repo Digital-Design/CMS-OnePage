@@ -14,12 +14,8 @@ Pour recevoir les notifications des contacts par le formulaire de contact il fau
 Configuration de l'adresse d'envoi (L'email qui s'affichera lorsque vous recevrez une notification par mail)
 <ul>
 	<li> Ajoutez ces lignes à /etc/mail/sendmail.mc pour activier la fonctionnalité :<br />
-		
-		<code>
-			FEATURE(`genericstable',`hash -o /etc/mail/genericstable.db')dnl<br />
-			GENERICS_DOMAIN_FILE(`/etc/mail/generics-domains')dnl
-		</code>
-		
+		<code>FEATURE(`genericstable',`hash -o /etc/mail/genericstable.db')dnl</code>
+		<code>GENERICS_DOMAIN_FILE(`/etc/mail/generics-domains')dnl</code>
 	</li>
 	
 	<li>Create a /etc/mail/generics-domains file that is just a list of all the domains that should be inspected. Make sure the file includes your server's canonical domain name, which you can obtain using the command:
