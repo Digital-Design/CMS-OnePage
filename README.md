@@ -1,11 +1,12 @@
-<h1>CMS-OnePage</h1>
-<h2>Installation</h2>
+# CMS-OnePage
 
-# Analytique
+## Installation
+
+### Analytique
 
 Pour pouvoir détecter le navigateur il faut installer ```browscap.ini ``` (http://browscap.org/) dans ```/etc/php5/apache2/``` puis rajouter la ligne ```browscap = /etc/php5/apache2/browscap.ini``` dans votre  ```php.ini```.
 
-# Contact
+### Contact
 
 Pour recevoir les notifications des contacts par le formulaire de contact il faut installer sendmail.
 
@@ -47,7 +48,7 @@ Configuration de l'adresse d'envoi (L'email qui s'affichera lorsque vous recevre
     
 Source : http://goo.gl/XKVcj3
 
-<h2>Tâches restantes</h2>
+## Tâches restantes
 
 <h3>Paramètres</h3>
 <ul>
@@ -72,11 +73,3 @@ Source : http://goo.gl/XKVcj3
 <ul>
   <li>Voir architecture</li>
 </ul>
-
-#### Installation
-
-You need Gulp installed globally:
-
-```sh
-$ npm i -g gulp
-```
