@@ -10,19 +10,21 @@ Pour recevoir les notifications des contacts par le formulaire de contact il fau
 <ul>
   	<li>Ubuntu : <code>sudo apt-get install sendmail</code></li>
 </ul>
-<ul>
-Configuration de l'adresse d'envoi (L'email qui s'affichera lorsque vous recevrez une notification par mail)
 
+Configuration de l'adresse d'envoi (L'email qui s'affichera lorsque vous recevrez une notification par mail)
+<ul>
 	<li> Ajoutez ces lignes à /etc/mail/sendmail.mc pour activier la fonctionnalité :<br />
+		<pre>
 		<code>
 			FEATURE(`genericstable',`hash -o /etc/mail/genericstable.db')dnl
 			GENERICS_DOMAIN_FILE(`/etc/mail/generics-domains')dnl
 		</code>
+		</pre>
 	</li>
 	
 	<li>Create a /etc/mail/generics-domains file that is just a list of all the domains that should be inspected. Make sure the file includes your server's canonical domain name, which you can obtain using the command:
 
-		<code>sendmail -bt -d0.1 </dev/null </code>
+		<code>sendmail -bt -d0.1 <\/dev/null </code>
 		Here is a sample /etc/mail/generics-domains file:
 
 		my-site.com
