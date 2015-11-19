@@ -38,7 +38,10 @@ elseif(isset($_GET['page'])){
   else if(!strcmp($_GET['page'], 'analytique')) {
     require ('controleurs/analytique.php');
   }else {
-    header("LOCATION: index.php?page=home");
+    //404
+    require ('controleurs/home.php');
   }
+}else {
+  require ('controleurs/home.php');
 }
 ?>
