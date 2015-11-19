@@ -102,7 +102,7 @@ pageLoaded();
 
         <?php if (1): ?>
             <!-- Contact Form -->
-            <div class="row" id="contact">
+            <div id="contact">
                 <div class="col-sm-6 col-sm-offset-3">
                     <h3>Contactez-moi !</h3>
                     <br/>
