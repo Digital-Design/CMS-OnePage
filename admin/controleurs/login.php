@@ -14,11 +14,10 @@ if(!empty($_POST)) {
 	else if($_POST['type'] == 'deconnexion'){
 		session_unset();
 		$success = TRUE;
-		header("LOCATION: index.php?page=login");
+		header("LOCATION: index.php");
 	}
 }
 else{
-
 	// On affiche la page (vue)
 	include_once('vues/login.php');
 
