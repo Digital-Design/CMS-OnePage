@@ -8,10 +8,12 @@ Sinon la fonction get_browser ne marchera pas.
 <h3>Contact</h3>
 Pour recevoir les notifications des contacts par le formulaire de contact il faut installer sendmail.
 <ul>
-  <li>Ubuntu : <code>sudo apt-get install sendmail</code></li>
+  	<li>Ubuntu : <code>sudo apt-get install sendmail</code></li>
+</ul>
+<ul>
 Configuration de l'adresse d'envoi (L'email qui s'affichera lorsque vous recevrez une notification par mail)
 
-	<li> Ajoutez ces lignes à  /etc/mail/sendmail.mc file to activate the feature:
+	<li> Ajoutez ces lignes à /etc/mail/sendmail.mc pour activier la fonctionnalité :<br />
 		<code>
 			FEATURE(`genericstable',`hash -o /etc/mail/genericstable.db')dnl
 			GENERICS_DOMAIN_FILE(`/etc/mail/generics-domains')dnl
