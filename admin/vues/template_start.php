@@ -22,6 +22,9 @@ $analytiquestats = getWeekAnalytiques();
 
     <title>Administration</title>
 
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
     <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="../css/sb-admin.css" rel="stylesheet" type="text/css">
     <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">

@@ -21,6 +21,13 @@
   </div>
 
   <div class="form-group">
+    <label class="control-label col-xs-2">Favicon</label>
+    <div class="col-xs-9">
+      <input name="favicon" value="" id="favicon2" type="file" data-min-file-count="0">
+    </div>
+  </div>
+
+  <div class="form-group">
     <label class="control-label col-xs-2">Autres</label>
     <div class="col-xs-9">
       <input type="text" class="form-control" value="">
@@ -34,3 +41,22 @@
   </div>
 
 </form>
+
+<script type="text/javascript">
+$("#favicon2").fileinput({
+    allowedFileExtensions : ['ico'],
+    language: 'fr',
+    maxFileSize: 100,
+    required: false,
+    showUpload: false,
+    height:'20px',
+    initialPreview: [
+      "<img src='../favicon.ico' ",
+    ],
+    initialCaption: [
+      '../favicon.ico',
+    ],
+});
+
+
+</script>
