@@ -22,7 +22,7 @@ Configuration de l'adresse d'envoi (L'email qui s'affichera lorsque vous recevre
     FEATURE(`genericstable',`hash -o /etc/mail/genericstable.db')dnl
     GENERICS_DOMAIN_FILE(`/etc/mail/generics-domains')dnl
     ```
-* Create a /etc/mail/generics-domains file that is just a list of all the domains that should be inspected. Make sure the file includes your server's canonical domain name, which you can obtain using the command: 
+* Creez le fichier /etc/mail/generics-domains qui est une liste de vos domaines. Mettez-y tous les noms de votre serveur, vous pouvez les obtenir avec la commande : 
 
     ```sh
     $ sendmail -bt -d0.1 <\/dev/null 
@@ -34,19 +34,19 @@ Configuration de l'adresse d'envoi (L'email qui s'affichera lorsque vous recevre
     bigboy.my-site.com
     ```
     
-*  Create your /etc/mail/genericstable file. First sendmail searches the /etc/mail/generics-domains file for a list of domains to reverse map. It then looks at the /etc/mail/genericstable file for an individual email address from a matching domain. The format of the file is 
+*  Creez le fichier /etc/mail/genericstable Le format du fichier est :  
     ```
     linux-username      username@new-domain.com
     ```
-    
+    Les mails envoyés avec l'utilisateur linux-username apparaitrons venant de l'adresse username@new-domain.com
     Par exemple si les mails sont envoyés par défaut avec l'utilisateur root : 
     ```
     root        notification@digital-design.com
     ```
     Les mails que vous recevrez viendront de l'adresse 'notification@digital-design.com'
     
-Source : http://www.linuxhomenetworking.com/wiki/index.php/Quick_HOWTO_:_Ch21_:_Configuring_Linux_Mail_Servers#Using_Sendmail_to_Change_the_Sender.27s_Email_Address
-</ul>
+Source : http://goo.gl/XKVcj3
+
 <h2>Tâches restantes</h2>
 
 <h3>Paramètres</h3>
