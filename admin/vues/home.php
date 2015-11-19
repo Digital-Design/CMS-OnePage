@@ -8,7 +8,7 @@
  </div>
 </div>
 
-<div class="row">
+<div>
   <div class="col-lg-4 col-md-6">
     <div class="panel panel-primary">
       <div class="panel-heading">
@@ -67,12 +67,12 @@
     </div>
   </div>
 
-  <div class="col-lg-3 col-md-6">
+  <div class="col-lg-4 col-md-6">
   <div class="panel panel-yellow">
     <div class="panel-heading">
       <div class="row">
         <div class="col-xs-3">
-          <i class="fa fa-shopping-cart fa-5x"></i>
+          <i class="fa fa-question fa-5x"></i>
         </div>
         <div class="col-xs-9 text-right">
           <div class="huge">124</div>
