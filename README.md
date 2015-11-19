@@ -43,7 +43,7 @@ Configuration de l'adresse d'envoi (L'email qui s'affichera lorsque vous recevre
     ```
     root        notification@digital-design.com
     ```
-    Les mails que vous recevrez viendront de l'adresse 'notification@digital-design.com'
+    Les mails que vous recevrez viendront de l'adresse notification@digital-design.com
     
 Source : http://goo.gl/XKVcj3
 
