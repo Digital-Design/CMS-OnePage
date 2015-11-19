@@ -9,7 +9,7 @@ Pour mettre ne place le rewritting, utilisez les commandes suivantes
     <ul>
       <li><code>a2enmod rewrite</code></li>
       <li><code>/etc/init.d/apache2 restart</code></li>
-    <ul>
+    </ul>
   </li>
 </ul>
 
