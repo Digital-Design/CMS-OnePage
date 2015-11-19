@@ -7,12 +7,12 @@ if(!empty($_POST)) {
 
 	if($_POST['type'] == 'connexion'){
 		$_SESSION = $_POST;
-		header("LOCATION: index.php?page=home");
+		header("LOCATION: home");
 
 	}
 	else if($_POST['type'] == 'deconnexion'){
 		session_unset();
-		header("LOCATION: index.php");
+		header("LOCATION: ./");
 	}
 }
 else{

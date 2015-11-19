@@ -57,7 +57,7 @@
           </div>
         </div>
       </div>
-      <a href="index.php?page=analytique">
+      <a href="analytique">
         <div class="panel-footer">
           <span class="pull-left">Voir plus de Détails</span>
           <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

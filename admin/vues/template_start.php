@@ -86,10 +86,10 @@ $analytiquestats = getWeekAnalytiques();
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="index.php?page=contact">Consulter les messages</a>
+                            <a href="contact">Consulter les messages</a>
                         </li>
                         <li>
-                            <a href="index.php?page=analytique">Consulter les visites</a>
+                            <a href="analytique">Consulter les visites</a>
                         </li>
                     </ul>
                 </li>
@@ -117,56 +117,56 @@ $analytiquestats = getWeekAnalytiques();
                 <?php else : ?>
                 <li>
                 <?php endif ?>
-                    <a href="index.php?page=home"><i class="fa fa-fw fa-home"></i> Home</a>
+                    <a href="home"><i class="fa fa-fw fa-home"></i> Home</a>
                 </li>
                 <?php if($_GET['page'] == 'categorie') : ?>
                 <li class="active">
                 <?php else : ?>
                 <li>
                 <?php endif ?>
-                    <a href="index.php?page=categorie"><i class="fa fa-fw fa-edit"></i> Editer les catégories</a>
+                    <a href="categorie"><i class="fa fa-fw fa-edit"></i> Editer les catégories</a>
                 </li>
                 <?php if($_GET['page'] == 'nav') : ?>
                 <li class="active">
                 <?php else : ?>
                 <li>
                 <?php endif ?>
-                    <a href="index.php?page=nav"><i class="fa fa-fw fa-at"></i> Editer la barre de navigation</a>
+                    <a href="nav"><i class="fa fa-fw fa-at"></i> Editer la barre de navigation</a>
                 </li>
                 <?php if($_GET['page'] == 'carousel') : ?>
                 <li class="active">
                 <?php else : ?>
                 <li>
                 <?php endif ?>
-                    <a href="index.php?page=carousel"><i class="fa fa-fw fa-file-image-o"></i> Editer le carousel</a>
+                    <a href="carousel"><i class="fa fa-fw fa-file-image-o"></i> Editer le carousel</a>
                 </li>
                 <?php if($_GET['page'] == 'module') : ?>
                 <li class="active">
                 <?php else : ?>
                 <li>
                 <?php endif ?>
-                    <a href="index.php?page=module"><i class="fa fa-fw fa-desktop"></i> Gestion des modules</a>
+                    <a href="module"><i class="fa fa-fw fa-desktop"></i> Gestion des modules</a>
                 </li>
                 <?php if($_GET['page'] == 'contact') : ?>
                 <li class="active">
                 <?php else : ?>
                 <li>
                 <?php endif ?>
-                    <a href="index.php?page=contact"><i class="fa fa-fw fa-comments"></i> Contact</a>
+                    <a href="contact"><i class="fa fa-fw fa-comments"></i> Contact</a>
                 </li>
                 <?php if($_GET['page'] == 'analytique') : ?>
                 <li class="active">
                 <?php else : ?>
                 <li>
                 <?php endif ?>
-                    <a href="index.php?page=analytique"><i class="fa fa-fw fa-users"></i> Analytique</a>
+                    <a href="analytique"><i class="fa fa-fw fa-users"></i> Analytique</a>
                 </li>
                 <?php if($_GET['page'] == 'parametre') : ?>
                 <li class="active">
                 <?php else : ?>
                 <li>
                 <?php endif ?>
-                    <a href="index.php?page=parametre"><i class="fa fa-fw fa-wrench"></i> Paramètres</a>
+                    <a href="parametre"><i class="fa fa-fw fa-wrench"></i> Paramètres</a>
                 </li>
             </ul>
         </div>
