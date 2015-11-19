@@ -13,8 +13,8 @@ Pour recevoir les notifications des contacts par le formulaire de contact il fau
 
 Configuration de l'adresse d'envoi (L'email qui s'affichera lorsque vous recevrez une notification par mail)
 <ul>
-	<li> Ajoutez ces lignes à /etc/mail/sendmail.mc pour activier la fonctionnalité :<br />
-		<code>FEATURE(`genericstable',`hash -o /etc/mail/genericstable.db')dnl</code>
+	<li> Ajoutez ces lignes à /etc/mail/sendmail.mc pour activier la fonctionnalité :
+		<code>FEATURE(`genericstable',`hash -o /etc/mail/genericstable.db')dnl</code><br />
 		<code>GENERICS_DOMAIN_FILE(`/etc/mail/generics-domains')dnl</code>
 	</li>
 	
