@@ -8,11 +8,20 @@ if(!empty($_POST)) {
 
 }
 
-$titre = 'Home';
-$sous_titre = ' ';
-
 // On affiche la page (vue)
-include_once('vues/template_start.php');
-$analytiquegraphstats = getGraphAnalytique();
-include_once('vues/home.php');
+if(isset($error)){
+  if($error == 404){
+    $titre = 'Erreur 404';
+    $sous_titre = '';
+    include_once('vues/template_start.php');
+    include_once('vues/404.php');
+  }
+}else{
+  $titre = 'Home';
+  $sous_titre = '';
+  include_once('vues/template_start.php');
+  $analytiquegraphstats = getGraphAnalytique();
+  include_once('vues/home.php');
+}
+
 include_once('vues/template_end.php');
