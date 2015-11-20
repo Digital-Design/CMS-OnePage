@@ -26,8 +26,8 @@ Aucune configuration n'est nécessaire
 <h3>Paramètres</h3>
 <p>Liste des id</p>
 <ol>
-  <li>Titre Site</li>
-  <li>Temps slider</li>
+  <li>Titre Site -> OK</li>
+  <li>Temps slider -> OK</li>
 </ol>
 
 <h3>Mail Contact</h3>
@@ -39,7 +39,7 @@ Aucune configuration n'est nécessaire
 <ul>
   <li>Création de compte (hash etc) -> OK</li>
   <li>Interface Profil (IP etc)</li>
-  <li>Adresse mail (envoie contact, password oublié)</li>
+  <li>Adresse mail (envoie contact, password oublié) -> OK</li>
 </ul>
 <h3>Module</h3>
 <ul>
