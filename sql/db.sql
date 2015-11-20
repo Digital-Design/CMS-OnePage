@@ -61,5 +61,5 @@ CREATE TABLE IF NOT EXISTS parametres
 #insert les paramètres configurables
 INSERT INTO parametres (id_parametre, valeur, description) VALUES
 (1, 'Mon Site', 'Titre du Site'),
-(2, 5 , 'Temps slider');
+(2, 5 , 'Temps slider')
 
