@@ -40,9 +40,9 @@ Configuration de l'adresse d'envoi (L'email qui s'affichera lorsque vous recevre
     linux-username      username@new-domain.com
     ```
     Les mails envoyés avec l'utilisateur linux-username apparaitrons venant de l'adresse username@new-domain.com
-    Par exemple si les mails sont envoyés par défaut avec l'utilisateur root : 
+    Par défault les mails seront envoyés avew www-data donc :
     ```
-    root        notification@digital-design.com
+    www-data        notification@digital-design.com
     ```
     Les mails que vous recevrez viendront de l'adresse notification@digital-design.com
     
