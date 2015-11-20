@@ -57,11 +57,12 @@ Source : http://goo.gl/XKVcj3
 ## Tâches restantes
 
 <h3>Paramètres</h3>
+<p>Liste des id</p>
 <ul>
-  <li>Temps slider</li>
-  <li>Titre Site</li>
-  <li>Favicon</li>
-  <li>Temps analytique</li>
+  <li>1 : Titre Site</li>
+  <li>2 : Temps analytique</li>
+  <li>3 : Favicon</li>
+  <li>4 : Temps slider</li>
 </ul>
 
 <h3>Mail Contact</h3>
