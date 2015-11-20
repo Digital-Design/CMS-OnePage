@@ -1,11 +1,11 @@
 <?php if(isset($SUCCESS) && $SUCCESS): ?>
-<div class="alert alert-success" role="alert">
-  <strong>Mise à jour :</strong> La catégorie a bien été mise à jour.
-</div>
+  <div class="alert alert-success" role="alert">
+    <strong>Mise à jour :</strong> La catégorie a bien été mise à jour.
+  </div>
 <?php elseif(isset($SUCCESS) && !$SUCCESS): ?>
-<div class="alert alert-danger" role="alert">
-  <strong>Erreur :</strong> Il y a eu un problème lors de la mise à jour de la catégorie.
-</div>
+  <div class="alert alert-danger" role="alert">
+    <strong>Erreur :</strong> Il y a eu un problème lors de la mise à jour de la catégorie.
+  </div>
 <?php endif ?>
 
 <button type="button" class="btn btn-default add" aria-label="Left Align">Ajouter une catégorie</button>
@@ -17,9 +17,9 @@
     <li class="list-group-item">
       <h3>
         <?php if($categorie['type'] == 1): ?>
-        Editer la catégorie <?php echo $categorie['id_categorie'] ?>
+          Editer la catégorie <?php echo $categorie['id_categorie'] ?>
         <?php elseif($categorie['type'] == 2): ?>
-        Editer le formulaire de contact
+          Editer le formulaire de contact
         <?php endif ?>
         <button type="button" class="btn btn-default btn-categorie" data-toggle="collapse" data-target="#id_categorie_<?php echo $key ?>" aria-controls="id_categorie_<?php echo $key ?>">
           <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
@@ -28,39 +28,52 @@
       <div class="collapse" id="id_categorie_<?php echo $key ?>">
         <br>
         <?php if($categorie['type'] == 2): ?>
-        <label class="rcheckbox">
-          Activer le formulaire de contact :
-          <input type="checkbox" name="active"> Oui</label>
-        <?php endif ?>
-        <form action="categorie" method="POST" enctype="multipart/form-data">
-          <!-- infos -->
-          <input type="hidden" name="id_categorie" value="<?php echo $categorie['id_categorie']; ?>" class="form-control" />
-          <input type="number" min="1" max="2" name="type" value="<?php echo $categorie['type']; ?>" class="form-control" />
-          <!-- Color picker -->
-          <div class="input-group colorpicker">
-            <input type="text" name="color" value="<?php echo $categorie['color']; ?>" class="form-control" data-color-format="hex"/>
-            <span class="input-group-addon"><i></i></span>
-          </div>
-          <!-- Ordre -->
-          <input type="number" name="ordre" value="<?php echo $categorie['ordre']; ?>" class="form-control" />
-          <!-- summernote -->
-          <textarea class="input-block-level summernote" name="code" rows="180"></textarea>
-
-          <button name="action" value="edit" type="submit" class="btn btn-primary">Enregistrer</button>
-          <?php if($categorie['type'] == 1): ?>
-            <button name="action" value="delete" type="submit" class="btn btn-danger">Supprimer</button>
+          <label class="rcheckbox">
+            Activer le formulaire de contact :
+            <input type="checkbox" name="active"> Oui</label>
           <?php endif ?>
-          <button type="button" class="btn">Annuler</button>
-        </form>
-      </div>
+          <form action="categorie" method="POST" enctype="multipart/form-data">
+            <!-- infos -->
+            <input type="hidden" name="id_categorie" value="<?php echo $categorie['id_categorie']; ?>" class="form-control" />
+            <input type="number" min="1" max="2" name="type" value="<?php echo $categorie['type']; ?>" class="form-control" />
+            <!-- Color picker -->
+            <div class="input-group colorpicker">
+              <input type="text" name="color" value="<?php echo $categorie['color']; ?>" class="form-control" data-color-format="hex"/>
+              <span class="input-group-addon"><i></i></span>
+            </div>
+            <!-- Ordre -->
 
-    </li>
+            <select name="ordre" class="form-control">
+              <?php for ($i=1; $i < count($categories)+1; $i++): ?>
+                <option value="<?php echo $i ?>"
 
-  <?php endforeach; ?>
+                  <?php if($i == $categorie['ordre']) : ?>
+                    selected
+                  <?php endif; ?>
 
-</div>
+                  >Position <?php echo $i ?></option>
 
-<script type="text/javascript">
+                <?php endfor; ?>
+              </select>
+
+              <!-- summernote -->
+              <textarea class="input-block-level summernote" name="code" rows="180"></textarea>
+
+              <button name="action" value="edit" type="submit" class="btn btn-primary">Enregistrer</button>
+              <?php if($categorie['type'] == 1): ?>
+                <button name="action" value="delete" type="submit" class="btn btn-danger">Supprimer</button>
+              <?php endif ?>
+              <button type="button" class="btn">Annuler</button>
+            </form>
+          </div>
+
+        </li>
+
+      <?php endforeach; ?>
+
+    </div>
+
+    <script type="text/javascript">
 
   //+ et - du deroulant des ctaégories
   $(document).on('click', '.btn-categorie', function(e) {
@@ -119,24 +132,24 @@
       '</li>',
       ].join('')
       );
-  key++;
+key++;
 
     //pour le summeernote
-  $(document).ready(function() {
-    $('.summernote').summernote({
-      height: "500px",
+    $(document).ready(function() {
+      $('.summernote').summernote({
+        height: "500px",
       /*onImageUpload: function(files, editor, welEditable) {
         sendFile(files[0], editor, welEditable);
       }*/
     });
-  });
+    });
 
   //color picker
   $(document).ready(function() {
     $('.colorpicker').colorpicker();
   });
 
-  });
+});
 /*
 function sendFile(file, editor, welEditable) {
   data = new FormData();
