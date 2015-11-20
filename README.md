@@ -58,12 +58,11 @@ Source : http://goo.gl/XKVcj3
 
 <h3>Paramètres</h3>
 <p>Liste des id</p>
-<ul>
-  <li>1 : Titre Site</li>
-  <li>2 : Temps analytique</li>
-  <li>3 : Favicon</li>
-  <li>4 : Temps slider</li>
-</ul>
+<ol>
+  <li>Titre Site</li>
+  <li>Favicon</li>
+  <li>Temps slider</li>
+</ol>
 
 <h3>Mail Contact</h3>
 <ul>
