@@ -73,7 +73,7 @@ function valideIp($ip) {
     //on regarde si l'ip existe pas deja
     if($row = $stmt->fetch(PDO::FETCH_ASSOC)){
       //si elle date pas de plus de XX min
-      if((strtotime($row['date_now']) - strtotime($row['date_creation'])) > TEMPS_ANALYTIQUE % 3600) return true;
+      if((strtotime($row['date_now']) - strtotime($row['date_creation'])) > TEMPS_ANALYTIQUE * 60) return true;
     }
     //sinon on ajoute
     else{
