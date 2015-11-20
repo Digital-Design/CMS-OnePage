@@ -18,45 +18,8 @@ Ubuntu :
 ```sh
 $ sudo apt-get install sendmail
 ```
+Aucune configuration n'est nécessaire
 
-Configuration de l'adresse d'envoi (L'email qui s'affichera lorsque vous recevrez une notification par mail)
-
-* Ajoutez ces lignes à /etc/mail/sendmail.mc pour activier la fonctionnalité :
-
-    ```
-    FEATURE(`genericstable',`hash -o /etc/mail/genericstable.db')dnl
-    GENERICS_DOMAIN_FILE(`/etc/mail/generics-domains')dnl
-    ```
-* Creez le fichier /etc/mail/generics-domains qui est une liste de vos domaines. Mettez-y tous les noms de votre serveur, vous pouvez les obtenir avec la commande :
-
-    ```sh
-    $ sendmail -bt -d0.1 <\/dev/null
-    ```
-    Par exemple :
-    ```
-    my-site.com
-    another-site.com
-    bigboy.my-site.com
-    ```
-
-*  Creez le fichier /etc/mail/genericstable Le format du fichier est :
-    ```
-    linux-username      username@new-domain.com
-    ```
-    Les mails envoyés avec l'utilisateur linux-username apparaitrons venant de l'adresse username@new-domain.com
-    Par défault les mails seront envoyés avew www-data donc :
-    ```
-    www-data        notification@digital-design.com
-    ```
-    Les mails que vous recevrez viendront de l'adresse notification@digital-design.com
-
-* N'oubliez pas de redémarrer sendmail une fois les modifications terminées
-
-	```sh
-	service sendmail restart
-	```
-
-Source : http://goo.gl/XKVcj3
 
 ## Tâches restantes
 
