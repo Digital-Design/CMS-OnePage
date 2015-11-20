@@ -2,6 +2,10 @@
 
 ## Installation
 
+### Log
+
+Log backoffice, user : ```admin``` mot de passe : ```s3curit3```.
+
 ### Analytique
 
 Pour pouvoir détecter le navigateur il faut installer ```browscap.ini ``` (http://browscap.org/) dans ```/etc/php5/apache2/``` puis rajouter la ligne ```browscap = /etc/php5/apache2/browscap.ini``` dans votre  ```php.ini```.
