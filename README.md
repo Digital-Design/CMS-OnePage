@@ -46,6 +46,12 @@ Configuration de l'adresse d'envoi (L'email qui s'affichera lorsque vous recevre
     ```
     Les mails que vous recevrez viendront de l'adresse notification@digital-design.com
     
+* N'oubliez pas de redémarrer sendmail une fois les modifications terminées
+
+	```sh
+	service sendmail restart
+	```
+	
 Source : http://goo.gl/XKVcj3
 
 ## Tâches restantes
