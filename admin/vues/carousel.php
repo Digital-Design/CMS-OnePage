@@ -53,7 +53,7 @@
   </div>
   <br/>
 
-    <form action="index.php?page=carousel" method="POST"  class="form-inline">
+    <form action="carousel" method="POST"  class="form-inline">
     <div class="form-group">
       <label>Changer le temps entre chaques images</label>
       <div class="input-group">

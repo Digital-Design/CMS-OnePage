@@ -32,7 +32,7 @@
           Activer le formulaire de contact :
           <input type="checkbox" name="active"> Oui</label>
         <?php endif ?>
-        <form action="index.php?page=categorie" method="POST" enctype="multipart/form-data">
+        <form action="categorie" method="POST" enctype="multipart/form-data">
           <!-- infos -->
           <input type="hidden" name="id_categorie" value="<?php echo $categorie['id_categorie']; ?>" class="form-control" />
           <input type="number" min="1" max="2" name="type" value="<?php echo $categorie['type']; ?>" class="form-control" />

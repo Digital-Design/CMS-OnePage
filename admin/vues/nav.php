@@ -10,7 +10,7 @@
 
 <button type="button" class="btn btn-default add" aria-label="Left Align">Ajouter un lien</button>
 <br/><br/>
-<form action="index.php?page=nav" method="POST">
+<form action="nav" method="POST">
   <table id="Sortable" class="table table-hover table-striped table-bordered">
     <thead>
       <tr>

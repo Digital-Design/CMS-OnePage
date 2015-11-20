@@ -11,7 +11,7 @@
 <p>Vous pouvez trier par colonne les commentaires.</p>
 <br/>
 
-<form action="index.php?page=contact" method="POST">
+<form action="contact" method="POST">
 
   <table class="table table-bordered table-striped table-hover sortable-theme-bootstrap" data-sortable>
     <thead>

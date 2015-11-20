@@ -27,7 +27,7 @@
           Accès Administration
         </h4>
         <div style="padding: 20px;" id="form-olvidado">
-          <form accept-charset="UTF-8" role="form" id="login-form" method="post" action="index.php?page=login">
+          <form accept-charset="UTF-8" role="form" id="login-form" method="post" action="login">
             <input type="hidden" class="form-control" name="type" value="connexion">
             <h4 class="">
               Connectez-vous !
@@ -63,7 +63,7 @@
           <h4 class="">
             Mot de passe oublié ?
           </h4>
-          <form accept-charset="UTF-8" role="form" id="login-recordar" method="post" action="index.php?page=login">
+          <form accept-charset="UTF-8" role="form" id="login-recordar" method="post" action="login">
             <input type="hidden" class="form-control" name="type" value="pwd">
             <fieldset>
               <span class="help-block">

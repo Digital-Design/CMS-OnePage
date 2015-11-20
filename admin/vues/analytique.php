@@ -11,7 +11,7 @@
 <p>Vous pouvez trier par colonne les informations de connexion.</p>
 <br/>
 
-<form action="index.php?page=analytique" method="POST">
+<form action="analytique" method="POST">
 
   <table class="table table-bordered table-striped table-hover sortable-theme-bootstrap" data-sortable>
     <thead>
