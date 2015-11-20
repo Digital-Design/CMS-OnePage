@@ -36,10 +36,11 @@ if(!empty($_POST)) {
     $mail = new PHPMailer();
 
     // Set who the email is coming from
-    $mail->SetFrom($_POST['mail'], $_POST['nom']);
+    $mail->SetFrom('notification@cmsonepage.fr', 'Votre CMS');
 
-    // Set who the email is sending to
-    $mail->AddAddress(ADMIN_ADRESSE);
+    //recuperation du mail admin
+    $parametre = getParametre(3);
+    $mail->AddAddress($parametre['valeur']);
 
     // Set the subject
     $mail->Subject = 'Vous avez été contacté depuis votre site web';
@@ -55,6 +56,12 @@ if(!empty($_POST)) {
       echo "invalid";
       //echo 'Mailer Error: ' . $mail->ErrorInfo;
     }
+  }else{
+    echo "invalid";
+  }
+}else{
+  echo "invalid";
+}
 
 /*
     //recuperation du mail admin
@@ -77,6 +84,3 @@ if(!empty($_POST)) {
     if(mail($parametre['valeur'], 'Vous avez été contacté depuis votre site web', $message, $headers)) echo "success";
     else echo "invalid";
 */
-}else{
-  echo "invalid";
-}
