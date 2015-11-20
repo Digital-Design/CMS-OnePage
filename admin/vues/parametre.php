@@ -31,6 +31,13 @@
     </div>
   </div>
 
+  <div class="form-group">
+    <label class="control-label col-xs-2">Mail notification</label>
+    <div class="col-xs-9">
+      <input name="parametres[2][valeur]" type="email" class="form-control" value="<?php echo $parametres[2]['valeur'] ?>">
+    </div>
+  </div>
+
   <div class="col-xs-offset-2 col-xs-9">
     <br/><br/>
     <button type="submit" class="btn btn-primary">Enregistrer</button>

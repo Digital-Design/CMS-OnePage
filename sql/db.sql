@@ -54,12 +54,13 @@ CREATE TABLE IF NOT EXISTS analytique
 CREATE TABLE IF NOT EXISTS parametres
 (
   id_parametre INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  valeur VARCHAR(20) NOT NULL,
+  valeur VARCHAR(100) NOT NULL,
   description VARCHAR(30)
 );
 
 #insert les paramètres configurables
 INSERT INTO parametres (id_parametre, valeur, description) VALUES
 (1, 'Mon Site', 'Titre du Site'),
-(2, 5 , 'Temps slider')
+(2, 5 , 'Temps slider'),
+(3, '' , 'Mail notification')
 
