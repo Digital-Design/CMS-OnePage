@@ -38,14 +38,14 @@
                   <i class="glyphicon glyphicon-user">
                   </i>
                 </span>
-                <input class="form-control" placeholder="Nom d'utilisateur" name="user" type="text" required="" autofocus="">
+                <input class="form-control" placeholder="Nom d'utilisateur" name="user" type="text" autofocus="">
               </div>
               <div class="form-group input-group">
                 <span class="input-group-addon">
                   <i class="glyphicon glyphicon-lock">
                   </i>
                 </span>
-                <input class="form-control" placeholder="Password" name="pwd" type="password" value="" required="">
+                <input class="form-control" placeholder="Password" name="pwd" type="password" value="" >
               </div>
               <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-block">
