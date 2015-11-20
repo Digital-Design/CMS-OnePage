@@ -60,7 +60,6 @@ Source : http://goo.gl/XKVcj3
 <p>Liste des id</p>
 <ol>
   <li>Titre Site</li>
-  <li>Favicon</li>
   <li>Temps slider</li>
 </ol>
 

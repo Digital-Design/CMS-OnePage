@@ -57,7 +57,7 @@
     <div class="form-group">
       <label>Changer le temps entre chaques images</label>
       <div class="input-group">
-        <input name="temps" value ="" type="number" min="0" max="60" class="form-control">
+        <input name="temps" value ="<?php echo $parametre['valeur'] ?>" type="number" min="0" max="60" class="form-control">
         <div class="input-group-addon">Seconde</div>
       </div>
     </div>
@@ -116,6 +116,12 @@
       <button type="button" class="btn">Annuler</button>
     </div>
     <script>
+
+            //config du temps du carousel
+            $('.carousel').carousel({
+                intervale : <?php echo $parametre['valeur'] ?>,
+            });
+
       var key = <?php echo $key+1 ?>;
 
       //file upload on charge chaque image pour chaque input

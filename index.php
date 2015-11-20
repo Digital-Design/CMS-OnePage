@@ -6,6 +6,7 @@ foreach (glob( ADMIN_FOLDER."/modeles/*.php" ) as $filename){
     include $filename;
 }
 
+$parametres = getParametres();
 pageLoaded();
 
 ?>
@@ -16,7 +17,7 @@ pageLoaded();
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Test</title>
+    <title><?php echo $parametres[0]['valeur'] ?></title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -132,6 +133,12 @@ pageLoaded();
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
         <script>
+
+            //config du temps du carousel
+            $('.carousel').carousel({
+                intervale : <?php echo $parametres[1]['valeur'] ?>,
+                pause : false
+            });
 
             //permet le scroll swing
             $(document).ready(function () {

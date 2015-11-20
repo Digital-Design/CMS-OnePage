@@ -11,12 +11,12 @@
   <strong>Oh snap!</strong> Change a few things up and try submitting again.
 </div>
 
-<form class="form-horizontal">
+<form class="form-horizontal" action="parametre" method="POST" enctype="multipart/form-data">
 
   <div class="form-group">
     <label class="control-label col-xs-2">Titre du site</label>
     <div class="col-xs-9">
-      <input type="text" class="form-control" value="">
+      <input type="text" name="parametres[0][valeur]" class="form-control" value="<?php echo $parametres[0]['valeur'] ?>">
     </div>
   </div>
 
@@ -28,9 +28,9 @@
   </div>
 
   <div class="form-group">
-    <label class="control-label col-xs-2">Autres</label>
+    <label class="control-label col-xs-2">Temps des sliders en seconde</label>
     <div class="col-xs-9">
-      <input type="text" class="form-control" value="">
+      <input name="parametres[1][valeur]" type="number" class="form-control" value="<?php echo $parametres[1]['valeur'] ?>">
     </div>
   </div>
 
@@ -43,7 +43,7 @@
 </form>
 
 <script type="text/javascript">
-$("#favicon2").fileinput({
+  $("#favicon2").fileinput({
     allowedFileExtensions : ['ico'],
     language: 'fr',
     maxFileSize: 100,
@@ -51,12 +51,12 @@ $("#favicon2").fileinput({
     showUpload: false,
     height:'20px',
     initialPreview: [
-      "<img src='../favicon.ico' ",
+    "<img src='../favicon.ico' ",
     ],
     initialCaption: [
-      '../favicon.ico',
+    '../favicon.ico',
     ],
-});
+  });
 
 
 </script>

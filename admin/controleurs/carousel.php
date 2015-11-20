@@ -2,13 +2,13 @@
 
 include_once('modeles/index.php');
 include_once('modeles/carousel.php');
-
+include_once('modeles/parametre.php');
 
 if(!empty($_POST)) {
 
   //si on modifie le temps du carousel
   if(isset($_POST['action']) && $_POST['action'] == 'temps'){
-
+    $SUCCESS = editParametre(2,$_POST['temps']);
   }
   //si on edite le carousel
   else{
@@ -23,6 +23,7 @@ if(!empty($_POST)) {
 
 $titre = 'Carousel';
 $carousel = getCarousel();
+$parametre = getParametre(2);
 $sous_titre = 'Il y a '.count($carousel).' images dans le carousel';
 
 // On affiche la page (vue)
