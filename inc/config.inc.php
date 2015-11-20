@@ -17,5 +17,8 @@ define('IP_BLACKLIST', serialize( array(
 )));
 //admin adresse
 define('ADMIN_ADRESSE','konstantin.sidorenko@orange.fr');
+//salt
+define('SALT','4%rwj=ZmdFqh+6NYJL_86x');
+define('MAX_LENGTH_SALT', 6);
 
 ?>

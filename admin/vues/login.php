@@ -26,6 +26,12 @@
           </i>
           Accès Administration
         </h4>
+        <?php if(isset($SUCCESS) && !$SUCCESS): ?>
+        <br/>
+        <div class="alert alert-danger" role="alert">
+          <strong>Erreur :</strong> Veuillez revoir vos identifiants.
+        </div>
+        <?php endif ?>
         <div style="padding: 20px;" id="form-olvidado">
           <form accept-charset="UTF-8" role="form" id="login-form" method="post" action="login">
             <input type="hidden" class="form-control" name="type" value="connexion">
@@ -38,14 +44,14 @@
                   <i class="glyphicon glyphicon-user">
                   </i>
                 </span>
-                <input class="form-control" placeholder="Nom d'utilisateur" name="user" type="text" autofocus="">
+                <input class="form-control" placeholder="Nom d'utilisateur" name="user" required type="text" autofocus="">
               </div>
               <div class="form-group input-group">
                 <span class="input-group-addon">
                   <i class="glyphicon glyphicon-lock">
                   </i>
                 </span>
-                <input class="form-control" placeholder="Password" name="pwd" type="password" value="" >
+                <input class="form-control" placeholder="Password" name="pwd" required type="password" value="" >
               </div>
               <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-block">

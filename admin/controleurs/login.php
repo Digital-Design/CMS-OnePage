@@ -6,8 +6,12 @@ include_once('modeles/login.php');
 if(!empty($_POST)) {
 
 	if($_POST['type'] == 'connexion'){
-		$_SESSION = $_POST;
-		header("LOCATION: home");
+		var_dump($_POST);
+		if(checkLogin($_POST['user'], $_POST['pwd'])){
+			$_SESSION['user'] = $_POST['user'];
+			header("LOCATION: ./");
+		}
+		$SUCCESS = false;
 
 	}
 	else if($_POST['type'] == 'deconnexion'){
@@ -15,8 +19,6 @@ if(!empty($_POST)) {
 		header("LOCATION: ./");
 	}
 }
-else{
-	// On affiche la page (vue)
-	include_once('vues/login.php');
 
-}
+// On affiche la page (vue)
+include_once('vues/login.php');
