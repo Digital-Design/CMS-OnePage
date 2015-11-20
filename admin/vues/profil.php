@@ -8,7 +8,7 @@
 </div>
 <?php endif; ?>
 
-<form class="form-horizontal" action="profil" method="POST" enctype="multipart/form-data">
+<form class="form-horizontal" onsubmit="return validateForm()" action="profil" method="POST" enctype="multipart/form-data">
 
   <div class="form-group">
     <label class="control-label col-xs-2">Mail</label>
@@ -20,14 +20,21 @@
   <div class="form-group">
     <label class="control-label col-xs-2">Mot de passe</label>
     <div class="col-xs-9">
-      <input name="pwd" type="password" class="form-control" value="">
+      <input name="pwd1" id="pwd1" type="password" class="form-control" value="">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-xs-2">Confirmer le mot de passe</label>
+    <div class="col-xs-9">
+      <input name="pwd2" id="pwd2" type="password" class="form-control" value="">
     </div>
   </div>
 
   <div class="form-group">
     <label class="control-label col-xs-2">IP</label>
     <div class="col-xs-9">
-      <input name="ip" type="text" class="form-control" value="">
+      <input name="ip" type="text" class="form-control" value="<?php echo $_SERVER['REMOTE_ADDR'] ?>">
     </div>
   </div>
 
@@ -38,3 +45,13 @@
   </div>
 
 </form>
+
+<script>
+//on check l'input password2 = password1 du form
+$(document).ready(function() {
+  $("#pwd2").keyup(function() {
+    if($(this).val() === $("#pwd1").val()) $(this).parent().parent().removeClass("has-error");
+    else $(this).parent().parent().addClass("has-error");
+  });
+});
+</script>
