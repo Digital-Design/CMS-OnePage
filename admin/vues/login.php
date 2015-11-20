@@ -44,14 +44,14 @@
                   <i class="glyphicon glyphicon-user">
                   </i>
                 </span>
-                <input class="form-control" placeholder="Nom d'utilisateur" name="user" required type="text" autofocus="">
+                <input class="form-control" placeholder="Nom d'utilisateur" name="user" required type="text" autofocus="" value="admin">
               </div>
               <div class="form-group input-group">
                 <span class="input-group-addon">
                   <i class="glyphicon glyphicon-lock">
                   </i>
                 </span>
-                <input class="form-control" placeholder="Password" name="pwd" required type="password" value="" >
+                <input class="form-control" placeholder="Mot de passe" name="pwd" required type="password" value="s3curit3" >
               </div>
               <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-block">
