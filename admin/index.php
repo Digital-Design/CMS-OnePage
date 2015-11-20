@@ -37,7 +37,11 @@ elseif(isset($_GET['page'])){
   }
   else if(!strcmp($_GET['page'], 'analytique')) {
     require ('controleurs/analytique.php');
-  }else {
+  }
+  else if(!strcmp($_GET['page'], 'profil')) {
+    require ('controleurs/profil.php');
+  }
+  else {
     $error = 404;
     require ('controleurs/home.php');
   }
