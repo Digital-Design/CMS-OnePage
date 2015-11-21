@@ -33,7 +33,7 @@ Aucune configuration n'est nécessaire
 <h3>Upload</h3>
 <ul>
   <li>Ajout fichier CSS</li>
-  <li>Ajout script JS</li
+  <li>Ajout script JS</li>
 </ul>
 <h3>Mail Contact</h3>
 <ul>
