@@ -29,7 +29,6 @@ Aucune configuration n'est nécessaire
   <li>Titre Site -> OK</li>
   <li>Temps slider -> OK</li>
   <li>Nouveaux paramètres</li>
- >
 </ol>
 <h3>Upload</h3>
 <ul>
