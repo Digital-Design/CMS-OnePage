@@ -29,10 +29,13 @@ Aucune configuration n'est nécessaire
   <li>Titre Site -> OK</li>
   <li>Temps slider -> OK</li>
   <li>Nouveaux paramètres</li>
-  <li>Ajout fichier CSS</li>
-  <li>Ajout script JS</li>
+ >
 </ol>
-
+<h3>Upload</h3>
+<ul>
+  <li>Ajout fichier CSS</li>
+  <li>Ajout script JS</li
+</ul>
 <h3>Mail Contact</h3>
 <ul>
   <li>Tester avec le serveur smtp -> OK</li>
