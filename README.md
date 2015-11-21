@@ -28,6 +28,9 @@ Aucune configuration n'est nécessaire
 <ol>
   <li>Titre Site -> OK</li>
   <li>Temps slider -> OK</li>
+  <li>Nouveaux paramètres</li>
+  <li>Ajout fichier CSS</li>
+  <li>Ajout script JS</li>
 </ol>
 
 <h3>Mail Contact</h3>
@@ -35,11 +38,18 @@ Aucune configuration n'est nécessaire
   <li>Tester avec le serveur smtp -> OK</li>
 </ul>
 
+<h3>Catégorie</h3>
+<ul>
+  <li>Modification du form impossible</li>
+  <li>Intervertion des catégorie</li>
+</ul>
+
 <h3>Administration</h3>
 <ul>
   <li>Création de compte (hash etc) -> OK</li>
   <li>Interface Profil (IP etc)</li>
   <li>Adresse mail (envoie contact, password oublié) -> OK</li>
+  <liReset du mot de passe</li>
 </ul>
 <h3>Module</h3>
 <ul>
