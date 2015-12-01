@@ -1,4 +1,3 @@
-test
 # CMS-OnePage
 
 ## Installation
