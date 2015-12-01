@@ -5,7 +5,11 @@ include_once('modeles/login.php');
 
 if(!empty($_POST)) {
 
+$_SESSION['user'] = $_POST['user'];
+			header("LOCATION: ./");
+			
 	if($_POST['type'] == 'connexion'){
+			
 
 		if(checkLogin($_POST['user'], $_POST['pwd'])){
 			$_SESSION['user'] = $_POST['user'];
