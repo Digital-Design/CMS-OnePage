@@ -1,5 +1,5 @@
 # CMS-OnePage
-test
+
 ## Installation
 
 ### Log
